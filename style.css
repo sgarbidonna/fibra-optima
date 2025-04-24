@@ -107,11 +107,26 @@
     font-weight: bold;
     text-transform: uppercase;
     border-bottom: 1px solid #000;
-    padding: 0 10px;
     background-color: white;
     position: sticky;
     top: 0;
     z-index: 1;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+
+
+    /*  OPCION 1 like y loki
+    font-family: 'Special Elite', cursive;
+    font-size: 16px;*/
+
+        /* opcion 2*/
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+
+     
   }
   
   .section-content {
