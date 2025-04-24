@@ -66,12 +66,30 @@
     border-right: none;
   }
 
-  .dummy-content {
+  .ezpezialez-content {
     height: 2000px;
     background: linear-gradient(white, lightgray);
-  }
 
-  .card {
+    
+}
+
+.ezpezialez-content h1{
+    font-size:1.5rem; 
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+}
+.ezpezialez-content p{
+    text-align: justify;
+
+    font-size: 0.8rem;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+
+}
+
+.card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -87,11 +105,15 @@
   .card-text h3 {
     font-weight: bold;
     margin: 0 0 0.5rem 0;
+    font-size: 0.7rem;
+    
+    text-transform: uppercase;
   }
   
   .card-text p {
     margin: 0;
     max-width: 100%;
+    font-size: 0.8rem;
   }
   
   .card-img {
@@ -125,7 +147,7 @@
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-
+    font-size: 1rem;
      
   }
   
