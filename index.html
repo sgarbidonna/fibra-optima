@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIBRA OPTIMA</title>
+    <title>FIBRA ÓPTIMA</title>
     <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <!-- --><link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
@@ -14,11 +14,18 @@
 </head>
 <body>
   <!-- Preloader -->
-<div id="preloader">
-  <div class="preloader-bg"></div>
-  <img src="/assets/fibra-optima.svg" alt="Logo Fibra Optima" class="preloader-logo">
-</div>
-
+  <div id="preloader">
+    <div id="preloader-bg"></div>
+  
+    <div id="preloader-content">
+      <img id="preloader-logo" src="/assets/fibra-optima.svg" alt="Logo Fibra Optima">
+      <!-- <div id="preloader-texts">
+        <h1 id="fibra">FIBRA</h1>
+        <h1 id="optima">OPTIMA</h1>
+      </div> -->
+    </div>
+  </div>
+  
 
     <div class="container">
       <div class="sidebar">
@@ -31,7 +38,9 @@
           <div class="logo" id="logo"></div>
         </div>
       </div>
+
       <div class="content">
+        
         <section class="section" id="section-a">
             <div class="section-header" id="section-a-title">RECOMENDACIONES</div>
             <div class="cards-content">
@@ -42,7 +51,13 @@
                   <p>Texto descriptivo breve de hasta 200 caracteres.</p>
                 </div>
                 <div class="card-img" style="background-color: #FFB6C1;"></div>
+              
+                <!-- Hashtags ocultos -->
+                <div class="card-hashtags" style="display: none;">
+                  #recomendacion #musica #alternativo
+                </div>
               </div>
+              
             
               <div class="card">
                 <div class="card-text">
@@ -195,5 +210,6 @@
   <script src="./scroll-by-section.js">  </script>
   <script src="./sections-click.js">  </script>
   <script src="./preloader.js">  </script>
+  <script src=".search.js">  </script>
 </body>
 </html>

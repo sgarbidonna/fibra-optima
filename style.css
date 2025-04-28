@@ -217,7 +217,7 @@
       transition: opacity 0.5s ease;
     }
 
-
+    
 #preloader {
   position: fixed;
   inset: 0;
@@ -227,12 +227,10 @@
   overflow: hidden;
   z-index: 9999;
   background-color: #f0f0f0;
-  
   animation: moveOutBg 1s 4s forwards;
 }
 
-/* Green background */
-.preloader-bg {
+#preloader-bg {
   position: absolute;
   left: 0;
   top: 0;
@@ -242,12 +240,31 @@
   animation: expandBg 1s forwards, moveOutBg 0.5s 4s forwards;
 }
 
-/* Logo */
-.preloader-logo {
-  width: 600px;
+#preloader-content {
+  display: flex;
+  align-items: center;
+  gap: 50px; 
   opacity: 0;
   z-index: 2;
   animation: fadeInLogo 1s 1s forwards, fadeOutLogo 1s 4s forwards;
+}
+
+#preloader-logo {
+  width: 17rem; 
+}
+
+#preloader-texts {
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+#fibra,#optima{
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1rem;
 }
 
 /* Animations */
@@ -271,6 +288,21 @@
   to { opacity: 0; }
 }
 
+/* Hide preloader */
 #preloader.hide {
   display: none;
+}
+
+.search-container {
+  padding: 20px;
+  text-align: center;
+}
+
+#search-input {
+  width: 300px;
+  max-width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
 }
