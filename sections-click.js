@@ -135,3 +135,47 @@ document.getElementById('menu-sets').addEventListener('click', () => highlightSe
 document.getElementById('section-a-title').addEventListener('click', () => highlightSection('a'));
 document.getElementById('section-b-title').addEventListener('click', () => highlightSection('b'));
 document.getElementById('section-c-title').addEventListener('click', () => highlightSection('c'));
+
+
+// Función para resetear todo (como cuando se desactiva una sección)
+function resetSections() {
+    const allSections = ['a', 'b', 'c'];
+    const sectionHeaders = {
+      'a': document.getElementById('section-a-title'),
+      'b': document.getElementById('section-b-title'),
+      'c': document.getElementById('section-c-title')
+    };
+  
+    allSections.forEach(id => {
+      const section = document.getElementById(`section-${id}`);
+      const header = sectionHeaders[id];
+      section.style.backgroundColor = '';
+      section.style.color = '';
+      section.style.flex = '1'; // Volver a tamaño normal
+      header.classList.remove('hidden'); // Mostrar los títulos
+      const images = section.querySelectorAll('img, .card-img');
+      images.forEach(img => {
+        img.style.opacity = '1';
+      });
+    });
+  
+    // Restaurar el diseño de las tarjetas
+    const cardsContent = document.querySelector('.cards-content');
+    cardsContent.style.display = 'flex';
+    cardsContent.style.flexWrap = 'wrap';
+    cardsContent.style.overflowX = 'auto'; // Scroll horizontal
+    cardsContent.style.overflowY = 'hidden';
+    cardsContent.style.gridTemplateColumns = '';
+    cardsContent.style.justifyContent = 'flex-start';
+  
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.style.borderBottom = '1px solid #000';
+    });
+  
+    activeSection = null;
+  }
+  
+  // Listener para el logo
+  document.getElementById('logo').addEventListener('click', resetSections);
+  
