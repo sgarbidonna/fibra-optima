@@ -1,176 +1,212 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Cascadia Code', monospace;
-  }
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cascadia Code', monospace;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Internet Explorer y Edge */
 
-  body, html {
-    height: 100%;
-    overflow: hidden;
-    background: #f0f0f0;
-  }
+    }
 
-  .container {
-    display: flex;
-    height: 100vh;
-  }
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
 
-  .sidebar {
-    width: 60px;
-    height: 100vh;
-    /* background: #f0f0f0; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border-right: 1px solid black;
-    position: relative;
-  }
-
-  .logo {
-    width: 60px;
-    height: 60px;
-    background: black;
-  }
-
-  .menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    height: 100%;
-    padding-bottom: 20px;
-    gap: 20px;
-  }
-
-  .menu-item {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    cursor: pointer;
-  }
-
-  .content {
-    display: flex;
-    flex: 1;
-  }
-
-  .section {
-    flex: 1;
-    overflow-y: auto;
-    border-right: 1px solid black;
-    padding: 10px;
-    height: 100vh;
-    transition: flex 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
-    background-color 0.5s ease, 
-    color 0.5s ease;
-  }
-
-  .section:last-child {
-    border-right: none;
-  }
-
-  .ezpezialez-content {
-    height: 2000px;
-    /* background: linear-gradient(white, lightgray); */
-   
 
     
-}
+    .container {
+      display: flex;
+      height: 100vh;
+    }
 
-.ezpezialez-content h1{
-    font-size:1.5rem; 
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:10px;
-}
-.ezpezialez-content p{
-    text-align: justify;
+    .sidebar {
+      width: 60px;
+      height: 100vh;
+      /* background: #f0f0f0; */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      border-right: 1px solid black;
+      position: relative;
+    }
 
-    font-size: 0.8rem;
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:10px;
+    .logo {
+      width: 60px;
+      height: 60px;
+      background: black;
+    }
 
-}
+    .menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      height: 100%;
+      padding-bottom: 20px;
+      gap: 20px;
+    }
 
-.card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #000;
-    padding: 1rem;
+    .menu-item {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      cursor: pointer;
+    }
+
+    .content {
+      display: flex;
+      flex: 1;
+    }
+
+    .section {
+      flex: 1;
+      overflow-y: auto;
+      border-right: 1px solid black;
+      padding: 10px;
+      height: 100vh;
+      transition: flex 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+      background-color 0.5s ease, 
+      color 0.5s ease;
+    }
+
+    .section:last-child {
+      border-right: none;
+    }
+
+  /* Para cuando una sección esté activa */
+  .section.active {
+    flex: 3; /* Se expande */
   }
-  
-  .card-text {
-    flex: 1;
-    padding-right: 1rem;
+
+  /* Sección que se esconde */
+  .section.hidden {
+    flex: 0; /* Se oculta */
   }
-  
-  .card-text h3 {
-    font-weight: bold;
-    margin: 0 0 0.5rem 0;
-    font-size: 0.7rem;
+
+    .ezpezialez-content {
+      height: 2000px;
+      /* background: linear-gradient(white, lightgray); */
     
-    text-transform: uppercase;
+
+      
   }
-  
-  .card-text p {
-    margin: 0;
-    max-width: 100%;
-    font-size: 0.8rem;
+
+  .ezpezialez-content h1{
+      font-size:1.5rem; 
+      padding-left:10px;
+      padding-right:10px;
+      padding-top:10px;
   }
-  
-  .card-img {
-    width: 100px;
-    height: 100px;
-    flex-shrink: 0;
-    /* background-color: #ccc; */
+  .ezpezialez-content p{
+      text-align: justify;
+
+      font-size: 0.8rem;
+      padding-left:10px;
+      padding-right:10px;
+      padding-top:10px;
+
   }
-  
-  .section-header {
-    height: 30px;
-    line-height: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 1px solid #000;
-    background-color: white;
-    border-radius: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
+/* Estilos para mostrar las tarjetas en tres columnas y permitir el desplazamiento horizontal */
+.cards-content {
+
+}
+
+.cards-content.open {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem; /* Espacio para el scroll */
+}
+  .card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #000;
+      padding: 1rem;
+    }
+    
+    .card-text {
+      flex: 1;
+      padding-right: 1rem;
+    }
+    
+    .card-text h3 {
+      font-weight: bold;
+      margin: 0 0 0.5rem 0;
+      font-size: 0.7rem;
+      
+      text-transform: uppercase;
+    }
+    
+    .card-text p {
+      margin: 0;
+      max-width: 100%;
+      font-size: 0.8rem;
+    }
+    
+    .card-img {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      /* background-color: #ccc; */
+    }
+    
+    .section-header {
+      height: 30px;
+      line-height: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      background-color: white;
+      border-radius: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
 
 
-    /*  OPCION 1 like y loki
-    font-family: 'Special Elite', cursive;
-    font-size: 16px;*/
+      /*  OPCION 1 like y loki
+      font-family: 'Special Elite', cursive;
+      font-size: 16px;*/
 
-        /* opcion 2*/
-    font-family: "Geist", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1rem;
-  
-    transition: all 0.5s ease;
-  }
-  
-  .section-header.hidden {
-    background-color: transparent;
-    border-radius: 0;
-    border-bottom: none;  /* Eliminamos la línea inferior */
-    color: transparent;   /* Hacemos el texto invisible */
-  }
-  
-  .section-content {
-    padding: 10px;
-  }
-  
-  
-  .section img {
-    transition: opacity 0.5s ease;
-  }
-  
+          /* opcion 2*/
+      font-family: "Geist", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 1rem;
+    
+      transition: all 0.5s ease;
+    }
+    
+    .section-header.hidden {
+      background-color: transparent;
+      border-radius: 0;
+      border-bottom: none;  /* Eliminamos la línea inferior */
+      color: transparent;   /* Hacemos el texto invisible */
+    }
+    
+    .section-content {
+      padding: 10px;
+    }
+    
+    
+    .section img {
+      transition: opacity 0.5s ease;
+    }
+    
+    .individual-set{
+
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #000;
+      padding: 1rem;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
