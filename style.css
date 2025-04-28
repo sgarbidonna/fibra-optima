@@ -87,10 +87,10 @@
     flex: 0; /* Se oculta */
   }
 
-    .ezpezialez-content {
-      height: 2000px;
-      /* background: linear-gradient(white, lightgray); */
-    
+  .ezpezialez-content {
+    height: 2000px;
+    /* background: linear-gradient(white, lightgray); */
+  
 
       
   }
@@ -115,19 +115,26 @@
 .cards-content.open {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem; /* Espacio para el scroll */
+  gap: 17px;
 }
-  .card {
+
+
+  
+.card {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #000;
       padding: 1rem;
     }
-    
+    .cards-content.open .card{
+
+      border-right: 1px solid #000;
+      
+    }
     .card-text {
       flex: 1;
       padding-right: 1rem;
@@ -209,3 +216,61 @@
       opacity: 1;
       transition: opacity 0.5s ease;
     }
+
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 9999;
+  background-color: #f0f0f0;
+  
+  animation: moveOutBg 1s 4s forwards;
+}
+
+/* Green background */
+.preloader-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #9AC17F;
+  animation: expandBg 1s forwards, moveOutBg 0.5s 4s forwards;
+}
+
+/* Logo */
+.preloader-logo {
+  width: 600px;
+  opacity: 0;
+  z-index: 2;
+  animation: fadeInLogo 1s 1s forwards, fadeOutLogo 1s 4s forwards;
+}
+
+/* Animations */
+@keyframes expandBg {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes moveOutBg {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeInLogo {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutLogo {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+#preloader.hide {
+  display: none;
+}

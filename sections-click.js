@@ -94,10 +94,10 @@ function highlightSection(sectionId) {
       cardsContent.style.overflowX = 'auto'; // Scroll horizontal
       cardsContent.style.overflowY = 'hidden'; // Sin scroll vertical
 
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        card.style.borderBottom = 'none'; // Sin borde inferior en las tarjetas activas
-      });
+    //   const cards = document.querySelectorAll('.card');
+    //   cards.forEach(card => {
+    //     card.style.borderBottom = 'none'; // Sin borde inferior en las tarjetas activas
+    //   });
 
     } else if (sectionId === 'c') {
       const individualSets = document.querySelectorAll('.individual-set');
