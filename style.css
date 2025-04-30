@@ -308,6 +308,9 @@
 }
 
 @media (max-width: 768px) {
+  .menu{
+    flex-direction: column-reverse;
+  }
   .container {
     flex-direction: row;
   }
