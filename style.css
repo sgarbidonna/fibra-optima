@@ -88,11 +88,8 @@
   }
 
   .ezpezialez-content {
-    height: 2000px;
     /* background: linear-gradient(white, lightgray); */
   
-
-      
   }
 
   .ezpezialez-content h1{
@@ -361,6 +358,17 @@
 
   #section-a .card-img {
     margin: 1rem;
+  }
+
+  .cards-content.open {
+    flex-direction: column;
+    grid-template-columns: none; 
+  }
+
+  .cards-content.open  #section-a .card{
+    flex-wrap: nowrap;
+    border-bottom: 1px solid black;
+    border-right: none;
   }
 
   #section-b .ezpezialez-content{
