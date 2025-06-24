@@ -365,10 +365,12 @@
     text-align: justify;
   }
 
-  #section-a .card-img {
-    margin: 1rem;
-  }
 */
+
+  #section-a .card-img {
+    width: 100px;
+    height: 100px;
+  }
   .cards-content.open {
     grid-template-columns: none;
   }
