@@ -145,17 +145,26 @@
       text-transform: uppercase;
     }
     
+    .card-text h4 {
+      font-weight: bold;
+      margin: 0 0 0.4rem 0;
+      font-size: 0.6rem;
+      
+      text-transform: uppercase;
+    }
+    
     .card-text p {
       margin: 0;
       max-width: 100%;
       font-size: 0.8rem;
+      text-align: justify;
     }
     
     .card-img {
       width: 100px;
       height: 100px;
       flex-shrink: 0;
-      /* background-color: #ccc; */
+      background-size: cover;
     }
     
     .section-header {
