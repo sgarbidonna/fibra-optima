@@ -35,6 +35,7 @@ function highlightSection(sectionId) {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
       card.style.borderBottom = '1px solid #000';
+      card.style.borderRight = '0px solid #000';
     });
 
     activeSection = null;
@@ -90,14 +91,14 @@ function highlightSection(sectionId) {
     if (sectionId === 'a') {
       const cardsContent = document.querySelector('.cards-content');
       cardsContent.style.display = 'grid';
-      cardsContent.style.gridTemplateColumns = 'repeat(3, 1fr)'; // 3 columnas
+      cardsContent.style.gridTemplateColumns = 'repeat(2, 1fr)';
       cardsContent.style.overflowX = 'auto'; // Scroll horizontal
       cardsContent.style.overflowY = 'hidden'; // Sin scroll vertical
 
-    //   const cards = document.querySelectorAll('.card');
-    //   cards.forEach(card => {
-    //     card.style.borderBottom = 'none'; // Sin borde inferior en las tarjetas activas
-    //   });
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.style.borderRight = '1px solid #000'; 
+      });
 
     } else if (sectionId === 'c') {
       const individualSets = document.querySelectorAll('.individual-set');
