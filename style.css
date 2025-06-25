@@ -83,15 +83,7 @@
       border-right: none;
     }
 
-  /* Para cuando una sección esté activa */
-  .section.active {
-    flex: 3; /* Se expande */
-  }
-
-  /* Sección que se esconde */
-  .section.hidden {
-    flex: 0; /* Se oculta */
-  }
+ 
 #section-c {
   flex: none;
   width: 30vw;
@@ -354,7 +346,7 @@
 
 @media (max-width: 768px) {
   .menu{
-    flex-direction: column-reverse;
+    /*flex-direction: column-reverse;*/
   }
   .container {
     flex-direction: row;
@@ -362,11 +354,10 @@
 
   .sidebar {
     display: block;
-    width: 15%;
+
   }
 
   .content {
-    width: 85%;
     flex-direction: column;
     /* overflow: scroll; */
   }
@@ -415,9 +406,12 @@
   }
 
 
+  #section-a {
+    max-height: calc(33.33% 2rem);
+  }}
   #section-b .ezpezialez-content{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: flex-start;
@@ -425,10 +419,14 @@
 
   #section-b .card-ezpezial {
     max-height: calc(33.33% - 2rem);
-    border-bottom: 0px; 
+
   }
   
-  
+  #section-c {
+    width: auto;
+    flex: 3;
+    max-height: calc(40% - 2rem);
+}
   #section-c .sets-content {
     flex-direction: row;
     
