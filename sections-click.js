@@ -39,9 +39,7 @@ function highlightSection(sectionId) {
     cardsContent.style.gridTemplateColumns = '';
     cardsContent.style.justifyContent = 'flex-start';
 
-    cards.forEach(card => {
-      card.style.borderRight = '0px solid #000';
-    });
+
 
     activeSection = null;
   } else if (sectionId === 'c') {
@@ -66,9 +64,6 @@ function highlightSection(sectionId) {
     cardsContent.style.gridTemplateColumns = '';
     cardsContent.style.justifyContent = 'flex-start';
 
-    cards.forEach(card => {
-      card.style.borderRight = '0px solid #000';
-    });
 
     activeSection = 'c';
   } else {
@@ -102,9 +97,7 @@ function highlightSection(sectionId) {
       cardsContent.style.overflowY = 'hidden';
       cardsContent.style.justifyContent = 'flex-start';
 
-      cards.forEach(card => {
-        card.style.borderRight = '1px solid #000';
-      });
+
     } else {
       // ✅ Restaurar diseño original
       cardsContent.style.display = 'flex';
@@ -114,9 +107,7 @@ function highlightSection(sectionId) {
       cardsContent.style.gridTemplateColumns = '';
       cardsContent.style.justifyContent = 'flex-start';
 
-      cards.forEach(card => {
-        card.style.borderRight = '0px solid #000';
-      });
+
     }
 
     activeSection = sectionId;
@@ -173,10 +164,7 @@ function resetSections() {
   cardsContent.style.gridTemplateColumns = '';
   cardsContent.style.justifyContent = 'flex-start';
 
-  cards.forEach(card => {
-    card.style.borderRight = '0px solid #000';
-    card.style.borderBottom = '1px solid #000';
-  });
+
 
   activeSection = null;
 }

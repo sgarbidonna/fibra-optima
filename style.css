@@ -69,7 +69,7 @@
     .section {
       flex: 1;
       overflow-y: auto;
-      border-right: 1px solid black;
+
       padding: 10px;
       height: 100vh;
       transition: flex 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
@@ -103,10 +103,13 @@
   }
 
   .ezpezialez-content h1{
-      font-size:1.5rem; 
-      padding-left:10px;
-      padding-right:10px;
-      padding-top:10px;
+
+    font-size: 1rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    text-transform: uppercase;
+
   }
   .ezpezialez-content p{
       text-align: justify;
@@ -136,12 +139,9 @@
       align-items: center;
       border-bottom: 1px solid #000;
       padding: 1rem;
+          margin: 7px;
     }
-    .cards-content.open .card{
 
-      border-right: 1px solid #000;
-      
-    }
     .card-text {
       flex: 1;
       padding-right: 1rem;
@@ -224,6 +224,34 @@
       transition: opacity 0.5s ease;
     }
     
+    .card-ezpezial{
+      height: 20vh;
+      border-bottom: 1px solid #000;
+      padding: 1rem;
+      margin: 7px;  
+      overflow-y: hidden;
+      transition: height 0.5s ease, padding 0.3s ease;
+      cursor: pointer;
+      padding: 1rem 1rem 1rem 1.5rem;
+      position: relative;
+    }
+
+    /* Cuando está expandido */ 
+    .card-ezpezial.expanded {
+      height:90vh; 
+      overflow-y: scroll;
+
+
+    }
+
+    /* Sangría de párrafos */
+    .card-ezpezial p {
+      text-indent: 2em;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+
     .individual-set{
 
       justify-content: space-between;
