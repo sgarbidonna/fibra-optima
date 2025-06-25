@@ -346,10 +346,11 @@
 
 @media (max-width: 768px) {
   .menu{
-    /*flex-direction: column-reverse;*/
+    flex-direction: column-reverse;
   }
   .container {
     flex-direction: row;
+    width: 100%;
   }
 
   .sidebar {
@@ -408,7 +409,8 @@
 
   #section-a {
     max-height: calc(33.33% 2rem);
-  }}
+  }
+
   #section-b .ezpezialez-content{
     display: flex;
     flex-direction: column;
