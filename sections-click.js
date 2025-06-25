@@ -1,131 +1,129 @@
 let activeSection = null;
 
 function highlightSection(sectionId) {
-  const allSections = ['a', 'b', 'c'];
+  const allSections = ['a', 'b'];
   const sectionHeaders = {
     'a': document.getElementById('section-a-title'),
     'b': document.getElementById('section-b-title'),
     'c': document.getElementById('section-c-title')
   };
 
+  const sectionC = document.getElementById('section-c');
+  const body = document.body;
+  const cardsContent = document.querySelector('.cards-content');
+  const cards = document.querySelectorAll('.card');
+
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   if (activeSection === sectionId) {
-    // Si la sección está activa, resetear todo
+    // 🔄 Restaurar todo
     allSections.forEach(id => {
       const section = document.getElementById(`section-${id}`);
       const header = sectionHeaders[id];
+      section.style.flex = '1';
       section.style.backgroundColor = '';
       section.style.color = '';
-      section.style.flex = '1'; // Volver a tamaño normal
-      header.classList.remove('hidden'); // Mostrar el título nuevamente
-      const images = section.querySelectorAll('img, .card-img');
-      images.forEach(img => {
-        img.style.opacity = '1';
-      });
+      section.style.opacity = '1';
+      header.classList.remove('hidden');
+      section.querySelectorAll('img, .card-img').forEach(img => img.style.opacity = '1');
     });
 
-    // Restaurar el diseño de las tarjetas
-    const cardsContent = document.querySelector('.cards-content');
+    sectionC.style.opacity = '1';
+    body.style.backgroundColor = '#f0f0f0';
+
+    // ✅ Restaurar cardsContent a su diseño original
     cardsContent.style.display = 'flex';
     cardsContent.style.flexWrap = 'wrap';
-    cardsContent.style.overflowX = 'auto'; // Para scroll horizontal
-    cardsContent.style.overflowY = 'hidden'; // Sin scroll vertical
-    cardsContent.style.gridTemplateColumns = ''; // Restablecer las columnas
-    cardsContent.style.justifyContent = 'flex-start'; // Alineación estándar
+    cardsContent.style.overflowX = 'auto';
+    cardsContent.style.overflowY = 'hidden';
+    cardsContent.style.gridTemplateColumns = '';
+    cardsContent.style.justifyContent = 'flex-start';
 
-    const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-      card.style.borderBottom = '1px solid #000';
       card.style.borderRight = '0px solid #000';
     });
 
     activeSection = null;
-  } else {
+  } else if (sectionId === 'c') {
+    // 🔸 SETS seleccionado
     allSections.forEach(id => {
       const section = document.getElementById(`section-${id}`);
       const header = sectionHeaders[id];
+      section.style.flex = '1';
+      section.style.opacity = '0';
+      header.classList.remove('hidden');
+      section.querySelectorAll('img, .card-img').forEach(img => img.style.opacity = '1');
+    });
 
-      if (sectionId === 'b') {
-        if (id === 'b') {
-          section.style.flex = '3'; // B grande
-          section.style.backgroundColor = '';
-          section.style.color = '';
-          header.classList.remove('hidden');
-        } else {
-          section.style.flex = '0'; // A y C desaparecen
-          header.classList.add('hidden');
-        }
-      } else if (sectionId === 'a') {
-        if (id === 'a') {
-          section.style.flex = '3'; // A grande
-          section.style.backgroundColor = '';
-          section.style.color = '';
-          header.classList.remove('hidden');
-        } else {
-          section.style.flex = '0'; // B y C desaparecen
-          header.classList.add('hidden');
-        }
+    sectionC.style.opacity = '1';
+    body.style.backgroundColor = '#9AC17F';
+
+    // ✅ Restaurar diseño original de cardsContent
+    cardsContent.style.display = 'flex';
+    cardsContent.style.flexWrap = 'wrap';
+    cardsContent.style.overflowX = 'auto';
+    cardsContent.style.overflowY = 'hidden';
+    cardsContent.style.gridTemplateColumns = '';
+    cardsContent.style.justifyContent = 'flex-start';
+
+    cards.forEach(card => {
+      card.style.borderRight = '0px solid #000';
+    });
+
+    activeSection = 'c';
+  } else {
+    // 🔹 Expandir section-a o section-b
+    allSections.forEach(id => {
+      const section = document.getElementById(`section-${id}`);
+      const header = sectionHeaders[id];
+      if (id === sectionId) {
+        section.style.flex = '3';
+        section.style.backgroundColor = '';
+        section.style.color = '';
+        section.style.opacity = '1';
+        header.classList.remove('hidden');
+        section.querySelectorAll('img, .card-img').forEach(img => img.style.opacity = '1');
       } else {
-        if (id !== sectionId) {
-          section.style.color = '#f0f0f0';
-          header.classList.add('hidden');
-
-          const images = section.querySelectorAll('img, .card-img');
-          images.forEach(img => {
-            img.style.opacity = '0';
-          });
-        } else {
-          section.style.backgroundColor = '';
-          section.style.color = '';
-          section.style.flex = '1';
-          header.classList.remove('hidden');
-
-          const images = section.querySelectorAll('img, .card-img');
-          images.forEach(img => {
-            img.style.opacity = '1';
-          });
-        }
+        section.style.flex = '0';
+        section.style.opacity = '1';
+        header.classList.add('hidden');
+        section.querySelectorAll('img, .card-img').forEach(img => img.style.opacity = '0');
       }
     });
 
-    // Control de las tarjetas para la sección A
-    if (sectionId === 'a') {
-      const cardsContent = document.querySelector('.cards-content');
+    sectionC.style.opacity = '1';
+    body.style.backgroundColor = '#f0f0f0';
+
+    // ✅ Si es sección A y estamos en escritorio, aplicar estilo grid horizontal
+    if (sectionId === 'a' && !isMobile) {
       cardsContent.style.display = 'grid';
       cardsContent.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      cardsContent.style.overflowX = 'auto'; // Scroll horizontal
-      cardsContent.style.overflowY = 'hidden'; // Sin scroll vertical
+      cardsContent.style.overflowX = 'auto';
+      cardsContent.style.overflowY = 'hidden';
+      cardsContent.style.justifyContent = 'flex-start';
 
-      const cards = document.querySelectorAll('.card');
       cards.forEach(card => {
-        card.style.borderRight = '1px solid #000'; 
+        card.style.borderRight = '1px solid #000';
       });
-
-    } else if (sectionId === 'c') {
-      const individualSets = document.querySelectorAll('.individual-set');
-      individualSets.forEach(set => {
-        set.style.opacity = '1';
-      });
-
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        card.style.borderBottom = '0px';
-      });
-
     } else {
-      const individualSets = document.querySelectorAll('.individual-set');
-      individualSets.forEach(set => {
-        set.style.opacity = '1';
-      });
+      // ✅ Restaurar diseño original
+      cardsContent.style.display = 'flex';
+      cardsContent.style.flexWrap = 'wrap';
+      cardsContent.style.overflowX = 'auto';
+      cardsContent.style.overflowY = 'hidden';
+      cardsContent.style.gridTemplateColumns = '';
+      cardsContent.style.justifyContent = 'flex-start';
 
-      const cards = document.querySelectorAll('.card');
       cards.forEach(card => {
-        card.style.borderBottom = '1px solid #000';
+        card.style.borderRight = '0px solid #000';
       });
     }
 
     activeSection = sectionId;
   }
 }
+
+
 
 // Agregar listeners para los botones del menú
 document.getElementById('menu-recomendaciones').addEventListener('click', () => highlightSection('a'));
