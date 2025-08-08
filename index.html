@@ -277,12 +277,37 @@
 
     </div>
 
+    <script>
+      // Función para redirigir a ./ezpezialez.html
+      function goToEzpezialez() {
+        window.location.href = './ezpezialez.html';
+      }
+
+      // Elementos
+      const menuEzpezialez = document.getElementById('menu-ezpezialez');
+      const sectionTitle = document.getElementById('section-ezpezialez-title');
+      const cardEzpezialHeaders = document.querySelectorAll('.card-ezpezial h1');
+
+      // Agregar listeners de click
+      if (menuEzpezialez) {
+        menuEzpezialez.addEventListener('click', goToEzpezialez);
+      }
+
+      if (sectionTitle) {
+        sectionTitle.addEventListener('click', goToEzpezialez);
+      }
+
+      cardEzpezialHeaders.forEach(h1 => {
+        h1.addEventListener('click', goToEzpezialez);
+      });
+
+    </script>
+
   <script src="./scroll-by-section.js">  </script>
   <script src="./tags.js"></script>
   <script src="./sections-behavior.js">  </script>
   <script src="./menu-behavior.js">  </script>
   <script src="./preloader.js">  </script>
-  <script src=".search.js">  </script>
   <script src="./section-ezpezialez.js"></script>
 </body>
 </html>
