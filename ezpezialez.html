@@ -6,56 +6,60 @@
     <title>FIBRA ÓPTIMA - EZPEZIALEZ</title>
     <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-    <!-- --><link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/svg+xml" href="/assets/fibra-optima.svg">
     <link rel="alternate icon" href="/assets/fibra-optima.png">
-
 </head>
-<body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div id="preloader-bg"></div>
-  
-    <div id="preloader-content">
-      <img id="preloader-logo" src="/assets/fibra-optima.svg" alt="Logo Fibra Optima">
 
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="preloader-bg"></div>
+    
+        <div id="preloader-content">
+        <img id="preloader-logo" src="/assets/fibra-optima.svg" alt="Logo Fibra Optima">
+
+        </div>
     </div>
-  </div>
-  
+    
 
     <div class="container">
 
         <div class="sidebar">
             
             <div class="menu">
-        
-            <div class="menu-item" id="menu-xqsomos">xqsomos</div>
-            <div class="menu-item" id="menu-karaokeloké">karaokeloké</div>
-            <div class="menu-item" id="menu-sets">sets</div>    
-            <div class="menu-item" id="menu-tags">tags</div>
-            <div class="logo" id="logo"></div>
+                <div class="menu-item" id="menu-xqsomos">xqsomos</div>
+                <div class="menu-item" id="menu-karaokeloké">karaokeloké</div>
+                <div class="menu-item" id="menu-sets">sets</div>    
+                <div class="menu-item" id="menu-tags">tags</div>
+                <div class="logo" id="logo"><a href="index.html"></a></div>
             </div>
+
         </div>
 
-        <div id="section-info">
+        <div class="section-articulos" id="section-articulos">
             <!-- Entradas completas aquí -->
         </div>
 
         <div id="section-search">
             <div class="search">
-                buscador  🔎
+                <input type="text" id="search-input" placeholder="encontrame... " autocomplete="off" />
             </div>
 
-            <h2>
+
+            <!-- <div class="archive-header">
                 ARCHIVO
-            </h2>
+            </div> -->
+            
             <ul id="search-list-by-title">
                 <!-- Lista de links a entradas -->
             </ul>
+            
             <ul id="search-list-by-year">
                 <!-- Lista de links a entradas -->
             </ul>
+        
         </div>
 
 
@@ -92,11 +96,14 @@
     </div>
 
 
-    <script src="./tags.js"></script>
+    <script src="./tags-ezpezialez.js"></script>
     <script src="./menu-behavior.js">  </script>
     <script src="./preloader.js">  </script>
-    <script src="ezpezialez.js"></script>
+    <script src="./search.js"></script>
 
+
+    <script src="./load-ezpezialez-articulo.js"></script>
+    <script src="./load-print-articulos.js"></script>
 
 </script>
 </body>

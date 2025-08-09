@@ -6,8 +6,8 @@ let activeTags = new Set();
 
 // Función para filtrar cards según tags activados
 function filterByTags() {
-  // Obtener todas las cards de las 3 secciones
-  const cards = document.querySelectorAll('.card-recomendaciones, .card-blockg, .card-tags');
+  // Obtener todas las cards con clase .card-articulo
+  const cards = document.querySelectorAll('.card-tags');
 
   if (activeTags.size === 0) {
     // Si no hay tags activos, mostrar todas las cards
