@@ -6,25 +6,45 @@ document.getElementById('menu-tags').addEventListener('click', () => {
 
 
 const menuXqsomos = document.getElementById('menu-xqsomos');
-const hoverPanel = document.getElementById('xqsomos');
+const menuSets = document.getElementById('menu-sets');
+const xqsomosPanel = document.getElementById('xqsomos-panel');
+const setsPanel = document.getElementById('sets-panel');
 
 menuXqsomos.addEventListener('mouseenter', () => {
-  hoverPanel.style.opacity = '1';
+  xqsomosPanel.style.opacity = '1';
 });
 
 menuXqsomos.addEventListener('mouseleave', () => {
   // Pequeño delay para permitir pasar el mouse al panel
   setTimeout(() => {
-    if (!hoverPanel.matches(':hover')) {
-      hoverPanel.style.opacity = '0';
+    if (!xqsomosPanel.matches(':hover')) {
+      xqsomosPanel.style.opacity = '0';
     }
   }, 100);
 });
 
-hoverPanel.addEventListener('mouseleave', () => {
-  hoverPanel.style.opacity = '0';
+// xqsomosPanel.addEventListener('mouseleave', () => {
+//   xqsomosPanel.style.opacity = '0';
+// });
+
+// xqsomosPanel.addEventListener('mouseenter', () => {
+//   xqsomosPanel.style.opacity = '1';
+// });
+
+
+
+/*** */
+menuSets.addEventListener('mouseenter', () => {
+  setsPanel.style.opacity = '1';
 });
 
-hoverPanel.addEventListener('mouseenter', () => {
-  hoverPanel.style.opacity = '1';
+menuSets.addEventListener('mouseleave', () => {
+  // Pequeño delay para permitir pasar el mouse al panel
+  setTimeout(() => {
+    if (!setsPanel.matches(':hover')) {
+      setsPanel.style.opacity = '0';
+    }
+  }, 100);
 });
+
+
