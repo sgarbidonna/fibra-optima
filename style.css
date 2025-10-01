@@ -293,27 +293,42 @@
       overflow-y: scroll;
     }
 
-
-    /*A PARTIR DE ACA COMEINZA EL STYLE DE EZPEZIALEZ,
-    EN LA PAGINA DE EZPEZIALEZ*/
-  .section-articulos h1{
+  .card-ezpezial h1{
     font-size: 1rem;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
     text-transform: uppercase;
   }
-  .section-articulos h2{
-    font-size: 0.8rem;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    
-      text-indent: 2em;
-    text-decoration: underline;
-  }
 
-  .section-articulos p{
+  .card-ezpezial p,h2{
+      text-align: justify;
+      font-size: 0.8rem;
+      padding-left:10px;
+      padding-right: 10px;
+      padding-top:10px;
+      text-indent: 2em;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+    .card-ezpezial h2{
+      text-decoration: underline;
+    }
+    
+    .card-ezpezial img{
+      width: -webkit-fill-available;
+      height: auto;
+    }
+  
+    #section-articulos h1{
+      font-size: 1rem;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      text-transform: uppercase;
+    }
+
+    #section-articulos p,h2{
       text-align: justify;
       font-size: 0.8rem;
       padding-left:10px;
@@ -324,16 +339,23 @@
       line-height: 1.6;
     }
 
-    .section-articulos img {
-    width: 500px;
-    height: auto;
-    padding: 50px;
-}
-
-    /*para que la imagen quede centrada*/
-    .ezpezialez-articulo{
-      text-align: center;
+    #section-articulos h2{
+      text-decoration: underline;
     }
+
+    #section-articulos img{
+      width: 550px;
+      padding:50px;
+      height: auto;
+    }
+
+    #section-articulos{
+      /*para que la imagen quede centrada*/
+      text-align: center;
+    
+    }
+
+    
    
     
 
