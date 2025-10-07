@@ -41,11 +41,9 @@
     </svg>
   </div>
 </div>
-
 <div class="mobile-menu" id="mobile-menu">
 
-  <a  href="./index.html" >recomendaciones</a>
-  <a  href="./index.html" >blockg</a>
+ 
   <a  href="./ezpezialez.html" >ezpezialez</a>
   <a  href="./index.html" >sets</a>
   <a href="https://www.youtube.com/watch?v=0QLOzgaJiYE&list=PLR6q4_Y1YnP5fddHKvCEwaYHqDQ3zJEKP" >karaokeloké</a>
@@ -53,16 +51,6 @@
     
 </div>
 
-
-<script>
-  const menuBtn = document.getElementById('hamburger-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  menuBtn.addEventListener('click', () => {
-    // console.log('call open');
-    mobileMenu.classList.toggle('open');
-  });
-</script>
 
 
     <div class="container">
@@ -86,7 +74,7 @@
 
       <div class="content">
         
-        <section class="section" id="section-a">
+        <div class="section" id="section-a">
             <div class="section-header" id="section-a-title">RECOMENDACIONES</div>
             <div class="cards-recomendaciones-content">
             
@@ -231,7 +219,7 @@
           -->
             
             </div>
-        </section>
+        </div>
   
         <div class="section" id="section-b">
           <div class="section-header"  id="section-b-title">BLOCKGS</div>
@@ -522,5 +510,17 @@
   <script src="./preloader.js">  </script>
   <script src="./section-ezpezialez.js"></script>
   <script src="./load-print-articulos.js"></script>
+
+  
+<script>
+  const menuBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn.addEventListener('click', () => {
+    // console.log('call open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+
 </body>
 </html>
