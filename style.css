@@ -682,6 +682,9 @@ audio{
   .section.active {
     height: calc(100vh - 2 * var(--section-collapsed-height, 60px));
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* ⚡ scroll nativo fluido en móvil */
+    overscroll-behavior: contain; /* evita saltos o rebotes en el contenedor */
+    touch-action: pan-y; /* permite gesto vertical con el dedo */
   
   }
 
