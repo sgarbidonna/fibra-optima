@@ -26,6 +26,54 @@
     </div>
   </div>
   
+  
+
+<div class="mobile-header">
+  <a class="mobile-logo" href="./index.html" >
+
+        <img src="./assets/fibra-optima.svg" alt="Logo" href="./index.html" >
+
+  </a>
+
+
+  <div class="hamburger" id="hamburger-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" stroke="black" fill="none" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </div>
+</div>
+
+
+
+<div class="mobile-menu" id="mobile-menu">
+
+  <a  href="./index.html" >recomendaciones</a>
+  <a  href="./index.html" >blockg</a>
+  <a  href="./ezpezialez.html" >ezpezialez</a>
+  <a  href="./index.html" >sets</a>
+  <a href="https://www.youtube.com/watch?v=0QLOzgaJiYE&list=PLR6q4_Y1YnP5fddHKvCEwaYHqDQ3zJEKP" >karaokeloké</a>
+  <a  href="./index.html" >xqsomos</a> 
+    
+</div>
+
+
+<script>
+  const menuBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+
+<!--
+
+
+
+
+-->
 
     <div class="container">
 
@@ -194,8 +242,7 @@
             
             </div>
         </section>
-
-        
+  
         <div class="section" id="section-b">
           <div class="section-header"  id="section-b-title">BLOCKGS</div>
           <div class="blockg-content">
@@ -478,7 +525,7 @@
 
     </script>
 
-  <script src="./scroll-by-section.js">  </script>
+  <!-- <script src="./scroll-by-section.js">  </script> -->
   <script src="./tags.js"></script>
   <script src="./sections-behavior.js">  </script>
   <script src="./menu-behavior.js">  </script>

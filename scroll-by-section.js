@@ -1,6 +1,7 @@
  // Evita que el scroll en una sección afecte otras
  document.querySelectorAll('.section').forEach(section => {
     section.addEventListener('wheel', function(e) {
+      // console.log('estoy en section-->', section);
       const delta = e.deltaY;
       const up = delta < 0;
 
