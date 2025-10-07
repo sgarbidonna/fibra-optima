@@ -160,44 +160,74 @@ if (!isMobile) {
 
   console.log('mobile', ' -  sections-behavior.js');
 
-  // const sections = document.querySelectorAll(".section");
-  const headers = document.querySelectorAll(".section-header");
+  // // const sections = document.querySelectorAll(".section");
+  // const headers = document.querySelectorAll(".section-header");
 
-  // Set the initial active section
-  let activeSection = document.querySelector("#section-a");
-  activeSection.classList.add("active");
-  console.log('section activa es', activeSection);
+  // // Set the initial active section
+  // let activeSection = document.querySelector("#section-a");
+  // activeSection.classList.add("active");
 
 
-  headers.forEach(header => {
-    console.log('section activa es', header);
-    header.addEventListener("touchstart", () => {
 
-      console.log('recibi touch en', header);
-      const section = header.parentElement;
+  // headers.forEach(header => {
+  //   console.log(header);
 
-      console.log('recibi touch en', section.id);
-      if (section.id === "section-ezpezialez") {
-        console.log('recibi touch de EZPEZIALEZ - REDIRIGE');
-        // window.location.href = "/ezpezialez.html"; 
-        return;
-      }
+  //   header.addEventListener("touchstart", () => {
+      
+  //     const section = header.parentElement;
 
-      // If the same section is already active, do nothing
-      if (section === activeSection) {
-        console.log('misma que activa');
-        return;
-      }
-      // Collapse the current active section
-      activeSection.classList.remove("active");
 
-      // Expand the clicked section
-      section.classList.add("active");
-      activeSection = section;
+  //     if (section.id === "section-ezpezialez") {
+  //     // window.location.href = "/ezpezialez.html"; 
+  //       return;
+  //     }
 
-      // // Optional: scroll smoothly to the top of the new section
-      // section.scrollIntoView({ behavior: "smooth" });
-    });
+  //     if (section === activeSection) {
+  //       console.log('misma que activa');
+  //       activeSection.classList.remove("active");
 
-  });
+  //       return;
+  //     }
+  //     // Collapse the current active section
+  //     activeSection.classList.remove("active");
+
+  //     // Expand the clicked section
+  //     section.classList.add("active");
+  //     activeSection = section;
+
+  //     // Optional: scroll smoothly to the top of the new section
+  //     // section.scrollIntoView({ behavior: "smooth" });
+  //   });
+
+  // });
+
+
+  const sectionA_mobile = document.getElementById("section-a");
+  const sectionB_mobile = document.getElementById("section-b");
+
+
+    let activeSection = sectionA_mobile;
+    console.log(activeSection);
+
+
+  function toggleSection(clickedSection) {
+    console.log('esta activa', clickedSection);
+    if (clickedSection === activeSection) {
+      console.log("La sección ya está activa");
+      return; // si la tocamos de nuevo, no hacemos nada
+    }
+
+
+    // Desactivar la sección actual
+    activeSection.classList.remove("active");
+    // Activar la sección clickeada
+    clickedSection.classList.add("active");
+    activeSection = clickedSection;
+  }
+
+  // Eventos touch
+  sectionA_mobile.addEventListener("touchstart", () => toggleSection(sectionA_mobile));
+  sectionB_mobile.addEventListener("touchstart", () => toggleSection(sectionB_mobile));
+
+
 }
