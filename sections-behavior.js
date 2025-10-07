@@ -200,11 +200,15 @@ if (!isMobile) {
   //   });
 
   // });
-
 const sectionA_mobile = document.getElementById("section-a");
 const sectionB_mobile = document.getElementById("section-b");
 
-sectionA_mobile.classList.add("active"); // Se despliega al iniciar
+// Asumiendo que los headers tienen esta clase
+const headerA = sectionA_mobile.querySelector(".section-header");
+const headerB = sectionB_mobile.querySelector(".section-header");
+
+// Inicialmente activa
+sectionA_mobile.classList.add("active");
 let activeSection = sectionA_mobile;
 
 // Función para alternar secciones
@@ -227,8 +231,9 @@ function toggleSection(clickedSection) {
   activeSection = clickedSection;
 }
 
-// Eventos touch
-sectionA_mobile.addEventListener("touchstart", () => toggleSection(sectionA_mobile));
-sectionB_mobile.addEventListener("touchstart", () => toggleSection(sectionB_mobile));
+// Asociar eventos al header
+headerA.addEventListener("touchstart", () => toggleSection(sectionA_mobile));
+headerB.addEventListener("touchstart", () => toggleSection(sectionB_mobile));
+
 
 }
