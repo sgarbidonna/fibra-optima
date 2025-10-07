@@ -27,14 +27,11 @@
   </div>
   
   
-
+<!-- MENU MOBILE -->
 <div class="mobile-header">
   <a class="mobile-logo" href="./index.html" >
-
         <img src="./assets/fibra-optima.svg" alt="Logo" href="./index.html" >
-
   </a>
-
 
   <div class="hamburger" id="hamburger-btn">
     <svg width="24" height="24" viewBox="0 0 24 24" stroke="black" fill="none" stroke-width="2">
@@ -44,8 +41,6 @@
     </svg>
   </div>
 </div>
-
-
 
 <div class="mobile-menu" id="mobile-menu">
 
@@ -64,22 +59,17 @@
   const mobileMenu = document.getElementById('mobile-menu');
 
   menuBtn.addEventListener('click', () => {
+    // console.log('call open');
     mobileMenu.classList.toggle('open');
   });
 </script>
 
-<!--
-
-
-
-
--->
 
     <div class="container">
 
       <div class="sidebar">
         
-        <div class="menu">
+        <div class="menu" id="menu-web">
           <a class="menu-item" id="menu-xqsomos">xqsomos</a>
           <a class="menu-item" id="menu-karaokeloké" href="https://www.youtube.com/watch?v=0QLOzgaJiYE&list=PLR6q4_Y1YnP5fddHKvCEwaYHqDQ3zJEKP" target="_blank" rel="noopener noreferrer">karaokeloké</a>
           <a class="menu-item" id="menu-sets">sets</a>  
