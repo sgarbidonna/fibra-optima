@@ -667,14 +667,13 @@ audio{
 
   .content {
     flex-direction: column;
-    
     padding-top: 70px;
     display: flex;
     flex-direction: column-reverse; 
     height: calc(100% - 10px);
     justify-content: flex-end;
-    overflow-y: auto;
-    
+    overflow-y: scroll;
+
   }
 
 
@@ -732,7 +731,6 @@ audio{
   .cards-recomendaciones-content.active {
     display: flex;
     flex-direction: row;
-    overflow-x: hidden;
     overflow-y: scroll; 
     padding-bottom: 1rem; 
     gap: 17px;
@@ -767,11 +765,8 @@ audio{
     align-content: center;
     justify-content: flex-start;
     align-items: center;
-
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    /* scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; */
   }
 
   #section-a .card {
