@@ -168,7 +168,7 @@ if (!isMobile) {
   activeSection.classList.add("active");
 
   headers.forEach(header => {
-    header.addEventListener("scroll", () => {
+    header.addEventListener("scrollend", () => {
       const section = header.parentElement;
 
       if (section.id === "section-ezpezialez") {
