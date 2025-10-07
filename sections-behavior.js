@@ -201,33 +201,34 @@ if (!isMobile) {
 
   // });
 
+const sectionA_mobile = document.getElementById("section-a");
+const sectionB_mobile = document.getElementById("section-b");
 
-  const sectionA_mobile = document.getElementById("section-a");
-  const sectionB_mobile = document.getElementById("section-b");
+sectionA_mobile.classList.add("active"); // Se despliega al iniciar
+let activeSection = sectionA_mobile;
 
-
-    let activeSection = sectionA_mobile;
-    console.log(activeSection);
-
-
-  function toggleSection(clickedSection) {
-    console.log('esta activa', clickedSection);
-    if (clickedSection === activeSection) {
-      console.log("La sección ya está activa");
-      return; // si la tocamos de nuevo, no hacemos nada
-    }
-
-
-    // Desactivar la sección actual
+// Función para alternar secciones
+function toggleSection(clickedSection) {
+  if (clickedSection === activeSection) {
+    // Si tocamos la misma sección, cerrarla y abrir la otra
     activeSection.classList.remove("active");
-    // Activar la sección clickeada
-    clickedSection.classList.add("active");
-    activeSection = clickedSection;
+
+    // Determinar la otra sección
+    const otherSection = clickedSection === sectionA_mobile ? sectionB_mobile : sectionA_mobile;
+
+    otherSection.classList.add("active");
+    activeSection = otherSection;
+    return;
   }
 
-  // Eventos touch
-  sectionA_mobile.addEventListener("touchstart", () => toggleSection(sectionA_mobile));
-  sectionB_mobile.addEventListener("touchstart", () => toggleSection(sectionB_mobile));
+  // Si tocamos la sección que no está activa, simplemente alternar
+  activeSection.classList.remove("active");
+  clickedSection.classList.add("active");
+  activeSection = clickedSection;
+}
 
+// Eventos touch
+sectionA_mobile.addEventListener("touchstart", () => toggleSection(sectionA_mobile));
+sectionB_mobile.addEventListener("touchstart", () => toggleSection(sectionB_mobile));
 
 }
