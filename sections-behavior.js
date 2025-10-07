@@ -168,7 +168,7 @@ if (!isMobile) {
   activeSection.classList.add("active");
 
   headers.forEach(header => {
-    header.addEventListener("scrollend", () => {
+    header.addEventListener("scroll", () => {
       const section = header.parentElement;
 
       if (section.id === "section-ezpezialez") {
@@ -186,6 +186,9 @@ if (!isMobile) {
       section.classList.add("active");
       activeSection = section;
 
+      // // Optional: scroll smoothly to the top of the new section
+      // section.scrollIntoView({ behavior: "smooth" });
     });
+    
   });
 }
