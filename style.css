@@ -750,8 +750,10 @@ audio{
   
     /* EZPEZIALEZ */
   #section-ezpezialez{   
-    max-height: 50px; 
-  }
+    /* max-height: 50px; 
+     */
+    display: none;
+    }
 
   .ezpezialez-content{
     display: none;
