@@ -166,19 +166,28 @@ if (!isMobile) {
   // Set the initial active section
   let activeSection = document.querySelector("#section-a");
   activeSection.classList.add("active");
+  console.log('section activa es', activeSection);
+
 
   headers.forEach(header => {
-    header.addEventListener("scroll", () => {
+    console.log('section activa es', header);
+    header.addEventListener("touchstart", () => {
+
+      console.log('recibi touch en', header);
       const section = header.parentElement;
 
+      console.log('recibi touch en', section.id);
       if (section.id === "section-ezpezialez") {
-        window.location.href = "/ezpezialez.html"; // 👈 poné acá tu URL real
+        console.log('recibi touch de EZPEZIALEZ - REDIRIGE');
+        // window.location.href = "/ezpezialez.html"; 
         return;
       }
 
       // If the same section is already active, do nothing
-      if (section === activeSection) return;
-
+      if (section === activeSection) {
+        console.log('misma que activa');
+        return;
+      }
       // Collapse the current active section
       activeSection.classList.remove("active");
 
@@ -189,6 +198,6 @@ if (!isMobile) {
       // // Optional: scroll smoothly to the top of the new section
       // section.scrollIntoView({ behavior: "smooth" });
     });
-    
+
   });
 }
