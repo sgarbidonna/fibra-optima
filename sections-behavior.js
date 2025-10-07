@@ -169,7 +169,7 @@ if (!isMobile) {
 
   // Handle section header clicks
   headers.forEach(header => {
-    header.addEventListener("click", () => {
+    header.addEventListener("pointerdown", () => {
       const section = header.parentElement;
 
       // If the clicked section is EZPEZIALEZ, redirect
