@@ -167,12 +167,10 @@ if (!isMobile) {
   let activeSection = document.querySelector("#section-a");
   activeSection.classList.add("active");
 
-  // Handle section header clicks
   headers.forEach(header => {
     header.addEventListener("scroll", () => {
       const section = header.parentElement;
 
-      // If the clicked section is EZPEZIALEZ, redirect
       if (section.id === "section-ezpezialez") {
         window.location.href = "/ezpezialez.html"; // 👈 poné acá tu URL real
         return;
@@ -188,8 +186,6 @@ if (!isMobile) {
       section.classList.add("active");
       activeSection = section;
 
-      // Optional: scroll smoothly to the top of the new section
-      section.scrollIntoView({ behavior: "smooth" });
     });
   });
 }
