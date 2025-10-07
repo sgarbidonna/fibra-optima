@@ -786,10 +786,21 @@ audio{
     text-align: justify;
   }  
   
-  
+.tags-mobile {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        padding-bottom: 25px;
+    }
 
+    
+.tag.active {
+  background-color: #9AC17F;
 
- 
+}
 
 }
 
