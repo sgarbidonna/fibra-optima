@@ -596,8 +596,7 @@ audio{
     top: 0;
     left: 0;
     z-index: 1000;
-    
-        position: fixed;
+    position: fixed;
   }
 
   .mobile-logo img {
@@ -607,8 +606,12 @@ audio{
   .hamburger {
     cursor: pointer;
   }
-
+  #mobile-menu {  
+    display: flex;
+  }
   .mobile-menu {
+    max-width: 100vw;
+    display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -616,17 +619,19 @@ audio{
     height: 0;
     overflow: hidden;
     background: white;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 35px;
+    font-size: 1em;
+    gap: 17px;
     transition: height 0.8s ease;
     z-index: 999;
   }
 
   .mobile-menu.open {
-    height: 100vh;
+    height: 101vh;
+    top: -1px;
+    /* height: -webkit-fill-available; */
   }
 
   .mobile-menu a {
