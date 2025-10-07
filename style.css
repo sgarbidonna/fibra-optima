@@ -690,17 +690,18 @@ audio{
     flex-direction: column;
     border-right: 0px;
     transition: height 0.4s ease;
-    overflow: hidden;
     /* height: var(--section-collapsed-height, 50px);   */
     height: 50px;
     max-height: 50px;
   }
 
+  
+
   .section.active {
     /* height: calc(100vh - 2 * var(--section-collapsed-height, 60px)); */
     overflow-y: scroll;
-    height: calc(100vh - 200px);
-    max-height: calc(100vh - 200px);
+    height: calc(100vh - 10px);
+    max-height: calc(100vh - 10px);
   
   }
 
@@ -750,14 +751,9 @@ audio{
   
     /* EZPEZIALEZ */
   #section-ezpezialez{   
-    /* max-height: 50px; 
-     */
     display: none;
     }
 
-  .ezpezialez-content{
-    display: none;
-  }
 
   /* RECOMENDACIONES */
   #section-a .cards-content {
@@ -787,7 +783,7 @@ audio{
     padding: 1rem;
     text-align: justify;
   }  
-  
+/*   
 .tags-mobile {
         display: grid;
         align-content: center;
@@ -802,7 +798,67 @@ audio{
 .tag.active {
   background-color: #9AC17F;
 
+} */
+
+
+
+  /* WEB XQSOMOS (SOLO EL MOBILE)*/
+
+  .xqsomos-mobile{
+        text-align: justify;
+        padding: 100px 20px 100px 20px;
+    
+  }
+
+
+
+
+  /* WEB EZPEZIIALEZ */
+
+  .container{
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: flex-start;
+  }
+   #section-search {
+        height: 60px;
+        width: 100vw;
+        position: fixed;
+        top: 60px;
+        border-left: 0px;
+        background: #f0f0f0;
+  } 
+#section-articulos {
+        width: 100vw;
+        padding: 130px 20px 50px 20px;
+        overflow-y: auto;
 }
+
+#section-articulos img {
+    width: -webkit-fill-available;
+    padding: 0;
+    height: auto;
+}
+
+input {
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    border: 1px solid #000;
+    background-color: white;
+    border-radius: 15px;
+    z-index: 1;
+    padding: 2vw;
+    display: flex;
+    align-items: center;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 0.9em;
+    width: 90vw;
+}
+ 
 
 }
 

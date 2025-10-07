@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIBRA ÓPTIMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- --><link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/fibra-optima.svg">
+    <link rel="alternate icon" href="/assets/fibra-optima.png">
+
+</head>
+<body>
+  
+<!-- MENU MOBILE -->
+<div class="mobile-header">
+
+  <a class="mobile-logo" href="./index.html" >
+        <img src="./assets/fibra-optima.svg" alt="Logo" href="./index.html" >
+  </a>
+  <div class="hamburger" id="hamburger-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" stroke="black" fill="none" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </div>
+
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+     
+  <a  href="./index.html" > RECOMENDACIONES </a>
+  <a  href="./index.html" > BLOCKGS </a>
+  <a href="./ezpezialez.html" > EZPEZIALEZ </a>
+  <a href="https://soundcloud.com/fibraoptima" >sets</a>
+  <a href="https://www.youtube.com/@fibraoptima" >karaokeloké</a>
+  <a href="/xqsomos.html" >xqsomos</a> 
+    
+</div>
+
+
+
+<div class="xqsomos-mobile">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bla bla bla...</p>
+</div>
+
+
+
+<script>
+  const menuBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn.addEventListener('click', () => {
+    // console.log('call open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
