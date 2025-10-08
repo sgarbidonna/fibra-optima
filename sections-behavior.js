@@ -42,8 +42,8 @@ if (!isMobile) {
       if (cardsContent) {
         cardsContent.style.display = 'flex';
         cardsContent.style.flexWrap = 'wrap';
-        cardsContent.style.overflowX = 'auto';
-        cardsContent.style.overflowY = 'hidden';
+      cardsContent.style.overflowX = 'hidden';
+      cardsContent.style.overflowY = 'scroll';
         cardsContent.style.gridTemplateColumns = '';
         cardsContent.style.justifyContent = 'flex-start';
       }
@@ -97,8 +97,8 @@ if (!isMobile) {
         cardsContent.style.flexWrap = 'wrap';
         cardsContent.style.gridTemplateColumns = '';
       }
-      cardsContent.style.overflowX = 'auto';
-      cardsContent.style.overflowY = 'hidden';
+      cardsContent.style.overflowX = 'hidden';
+      cardsContent.style.overflowY = 'scroll';
       cardsContent.style.justifyContent = 'flex-start';
     }
 
@@ -145,8 +145,8 @@ if (!isMobile) {
     if (cardsContent) {
       cardsContent.style.display = 'flex';
       cardsContent.style.flexWrap = 'wrap';
-      cardsContent.style.overflowX = 'auto';
-      cardsContent.style.overflowY = 'hidden';
+      cardsContent.style.overflowX = 'hidden';
+      cardsContent.style.overflowY = 'scroll';
       cardsContent.style.gridTemplateColumns = '';
       cardsContent.style.justifyContent = 'flex-start';
     }
