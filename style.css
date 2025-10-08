@@ -272,7 +272,7 @@ width: 0px;}
   .card-blockg{
     align-items: center;
     border-bottom: 1px solid #000;
-    padding: 1rem;
+    padding: 10px;
     margin: 7px;  
   }
 
@@ -826,11 +826,12 @@ li::before {
     display: flex;
     flex-direction: column;
     overflow-y: scroll; 
-    padding-bottom: 1rem; 
+    /* padding-bottom: 1rem;  */
     gap: 17px;
     justify-content: flex-start;
     align-items: center;
     width: 100vw;
+    margin-left: -10px;
     
   }
 
@@ -947,7 +948,7 @@ li::before {
   } 
 #section-articulos {
         width: 100vw;
-        padding: 130px 20px 50px 20px;
+        padding: 130px 0px 50px 0px;
         overflow-y: auto;
 }
 
@@ -975,7 +976,10 @@ input {
     width: 90vw;
 }
  
+.card-articulo{
+  padding: 1em 15px;
 
+}
 .xqsomos p{
   font-size: 0.7em;
 }
