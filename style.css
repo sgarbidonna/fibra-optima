@@ -14,6 +14,10 @@
       overflow: hidden;
       background: #f0f0f0;
       transition: background-color 0.5s ease;
+      cursor: url('./assets/fibra-optima-128px.ico'), auto;
+      cursor: url('./assets/fibra-optima-32px.ico'), auto;
+      /* cursor: url('./assets/fibra-optima-32px-white.ico'), auto; */
+      /* cursor: crosshair; */
     }
 
 #preloader {
@@ -81,6 +85,7 @@ width: 0px;}
       background: url('/assets/fibra-optima.svg') no-repeat center center;
       background-size: contain;
       cursor: pointer;
+
     }
 
   #mobile-menu, .mobile-header{
@@ -112,6 +117,7 @@ width: 0px;}
       text-decoration:wavy;
       text-decoration:underline;
       font-weight: 700;
+      
     }
 
     .content {
