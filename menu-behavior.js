@@ -23,13 +23,13 @@ menuXqsomos.addEventListener('mouseleave', () => {
   }, 100);
 });
 
-// xqsomosPanel.addEventListener('mouseleave', () => {
-//   xqsomosPanel.style.opacity = '0';
-// });
+xqsomosPanel.addEventListener('mouseleave', () => {
+  xqsomosPanel.style.opacity = '0';
+});
 
-// xqsomosPanel.addEventListener('mouseenter', () => {
-//   xqsomosPanel.style.opacity = '1';
-// });
+xqsomosPanel.addEventListener('mouseenter', () => {
+  xqsomosPanel.style.opacity = '1';
+});
 
 
 
