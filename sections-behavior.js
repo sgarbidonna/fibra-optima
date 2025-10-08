@@ -91,7 +91,7 @@ if (!isMobile) {
     if (cardsContent) {
       if (sectionId === 'a' && !isMobile) {
         cardsContent.style.display = 'grid';
-        cardsContent.style.gridTemplateColumns = 'repeat(3, 1fr)';
+        cardsContent.style.gridTemplateColumns = 'repeat(2, 1fr)';
       } else {
         cardsContent.style.display = 'flex';
         cardsContent.style.flexWrap = 'wrap';
