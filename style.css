@@ -777,7 +777,8 @@ li::before {
     height: calc(100% - 10px);
     justify-content: flex-end;
     overflow-y: scroll;
-
+    overflow-x: hidden;
+    width: 100vw;
   }
 
 
@@ -839,9 +840,16 @@ li::before {
     overflow-y: scroll; 
     padding-bottom: 1rem; 
     gap: 17px;
+    padding: 15px;
+    margin: 7px;
+    width: -webkit-fill-available;
+
   }
 
-  
+  #section-a, #section-b{
+    
+        overflow-x: hidden;
+  }
   #section-b {
     flex: 1;
     width: auto;
@@ -887,6 +895,10 @@ li::before {
     padding: 1rem;
     text-align: justify;
   }  
+
+  #xqsomos-panel{
+    display: none;
+  }
 /*   
 .tags-mobile {
         display: grid;
