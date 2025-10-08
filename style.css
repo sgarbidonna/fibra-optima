@@ -256,7 +256,6 @@ width: 0px;}
     font-weight: 500;
     font-style: italic;
     
-    justify-self: left;
     justify-self: right;
 
   }
@@ -868,7 +867,7 @@ li::before {
     }
 
      #section-articulos iframe{
-      width: 90%;
+      width: 100%;
       aspect-ratio: 16 / 9;
     }
 
