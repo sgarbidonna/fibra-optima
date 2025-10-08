@@ -867,6 +867,11 @@ li::before {
     display: none;
     }
 
+     #section-articulos iframe{
+      width: 90%;
+      aspect-ratio: 16 / 9;
+    }
+
 
   /* RECOMENDACIONES */
   #section-a .cards-content {
