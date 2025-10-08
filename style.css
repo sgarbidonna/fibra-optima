@@ -19,10 +19,12 @@
 #preloader {
   position: fixed;
   inset: 0;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  height: 101vh;
   z-index: 9999;
   background-color: #9AC17F;
   animation: fadeOutLogo 1s 3s forwards;
