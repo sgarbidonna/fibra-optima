@@ -226,10 +226,13 @@ width: 0px;}
     font-weight: bold;
     margin: 0 0 0.5rem 0;
     font-size: 0.7rem;
-    
     text-transform: uppercase;
   }
-  
+
+  .card-recomendaciones-text h3:hover{
+    text-decoration: underline;
+  }
+
   .card-recomendaciones-text h4 {
     font-weight: bold;
     margin: 0 0 0.4rem 0;
@@ -278,7 +281,7 @@ width: 0px;}
     border-bottom: 1px solid #000;
     padding: 0 1rem 11rem 0;
     margin: 7px; 
-    height: 67vh;
+    height: 50vh;
     overflow-y: hidden;
     transition: height 0.5s ease, padding 0.3s ease;
     cursor: pointer;
