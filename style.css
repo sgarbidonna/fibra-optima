@@ -428,6 +428,7 @@ width: 0px;}
   cursor: pointer;
 }
 
+.tag:hover,
 .tag.active {
   background-color: #9AC17F;
 
