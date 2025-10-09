@@ -1,6 +1,7 @@
 // ===============================
 // archive-list.js
 // ===============================
+
 document.addEventListener('DOMContentLoaded', () => {
   const section = document.getElementById('section-articulos');
   const archiveList = document.getElementById('archive-list');
