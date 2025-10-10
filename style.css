@@ -457,6 +457,9 @@ width: 0px;}
 #xqsomos:hover {
   opacity: 1;
 }
+#xqsomos-panel.active {
+  opacity: 1;
+}
 .xqsomos[style*="opacity: 1"] {
   pointer-events: auto;
 }
@@ -699,7 +702,41 @@ li::before {
   content: '';
 }
 
-@media (max-width: 768px) {
+#menu-recomendaciones, 
+#menu-blockg,
+#menu-ezpezialez,
+#menu-recomendaciones-ezpezialez,
+#menu-blockg-ezpezialez{
+  display: none;
+}
+
+/*TABLET*/
+@media (min-width: 821px) and (max-width: 1200px) {
+
+  #section-ezpezialez{
+    display: none;
+  }
+
+
+  #menu-ezpezialez{
+    display: block;
+    font-weight: 800;
+  }
+
+
+  /*EZPEZIALEZ HTML*/
+
+  #menu-recomendaciones-ezpezialez,
+  #menu-blockg-ezpezialez{
+    display: block;
+    font-weight: 800;
+  }
+}
+
+
+
+/*MOBILE*/
+@media (max-width: 820px) {
 
   body {
     overflow-y: auto; 
@@ -1000,5 +1037,4 @@ input {
 }
 
 }
-
 

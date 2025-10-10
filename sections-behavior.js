@@ -1,6 +1,8 @@
-const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const isTablet = window.matchMedia("(min-width: 820px) and (max-width: 1024px)").matches;
+const isMobile = window.matchMedia("(max-width: 819px)").matches;
+const isWeb = window.matchMedia("(min-width: 1025px)").matches;
 
-if (!isMobile) {
+if (isWeb) {
 
   console.log('web', ' -  sections-behavior.js');
 
@@ -154,8 +156,21 @@ if (!isMobile) {
     activeSection = null;
   }
 
-}
- else {
+} else if (isTablet) {
+
+  console.log('tablet', ' - sections-behavior.js');
+
+  const headerA = document.getElementById('section-a-title');
+  const headerB = document.getElementById('section-b-title');
+
+  // Anular comportamiento
+  headerA.addEventListener('click', e => e.stopImmediatePropagation());
+  headerB.addEventListener('click', e => e.stopImmediatePropagation());
+
+  // Si querés cambiar estilo visual
+  headerA.style.cursor = 'default';
+  headerB.style.cursor = 'default';
+} else {
 /* AL SER UN IF NEGATIVO SI ENTRO ACA ESTOY EN MOBIL  */ 
 
   console.log('mobile', ' -  sections-behavior.js');
@@ -236,4 +251,4 @@ headerA.addEventListener("touchstart", () => toggleSection(sectionA_mobile));
 headerB.addEventListener("touchstart", () => toggleSection(sectionB_mobile));
 
 
-}
+} 
