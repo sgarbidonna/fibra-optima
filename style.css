@@ -853,7 +853,7 @@ li::before {
     overflow-y: scroll;
     height: calc(100vh - 10px);
     max-height: calc(100vh - 10px);
-    padding-bottom: 5vh;
+    margin-bottom: 5vh;
   }
 
 
