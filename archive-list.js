@@ -4,6 +4,7 @@
 
 if (!isMobile) {
   console.log('archive-list.js only on web');
+  
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('section-articulos');
     const archiveList = document.getElementById('archive-list');

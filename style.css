@@ -973,10 +973,10 @@ li::before {
   /* WEB XQSOMOS (SOLO EL MOBILE)*/
 
   .xqsomos-mobile{
-        text-align: justify;
-        font-size: small;
-        padding: 100px 20px 100px 20px;
-      margin-bottom: 5vh;
+    text-align: justify;
+    font-size: small;
+    padding: 100px 20px 100px 20px;
+    margin-bottom: 5vh;
   }
 
 

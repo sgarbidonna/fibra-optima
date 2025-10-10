@@ -47,6 +47,7 @@
 
 
 // version andando -->
+
  document.addEventListener('DOMContentLoaded', async () => {
 
    const filename = location.pathname.split('/').pop();
