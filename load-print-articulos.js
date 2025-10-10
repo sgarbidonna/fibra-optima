@@ -47,36 +47,52 @@
 
 
 // version andando -->
-document.addEventListener('DOMContentLoaded', async () => {
-  const filename = location.pathname.split('/').pop();
-  if (filename !== 'ezpezialez.html') return;
 
-  try {
-    const resp = await fetch('./index.html');
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+ document.addEventListener('DOMContentLoaded', async () => {
 
-    const html = await resp.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+   const filename = location.pathname.split('/').pop();
+   if (filename !== 'ezpezialez.html') return;
 
-    const articulos = doc.querySelectorAll('.ezpezialez-articulo');
-    const sectionArticulos = document.querySelector('.section-articulos');
-    if (!sectionArticulos) return;
+   // console.log('[DEBUG] Estamos en ezpezialez.html — iniciando fetch de index.html');
 
-    sectionArticulos.innerHTML = ''; // limpiar por si acaso
+   try {
+     const resp = await fetch('./index.html');
+     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
 
-    articulos.forEach(articulo => {
-      const card = document.createElement('div');
-      card.classList.add('card-articulo');
-      const clone = articulo.cloneNode(true);
-      card.appendChild(clone);
-      sectionArticulos.appendChild(card);
-    });
+     const html = await resp.text();
+     const parser = new DOMParser();
+     const doc = parser.parseFromString(html, 'text/html');
 
-    console.log(`[load-print-articulos.js] ${articulos.length} artículos inyectados`);
-  } catch (err) {
-    console.error('[ERROR] No se pudo obtener index.html:', err);
-  }
-});
+     const articulos = doc.querySelectorAll('.ezpezialez-articulo');
+     // console.log('[DEBUG] Artículos encontrados en index.html:', articulos.length);
+
+     const sectionArticulos = document.querySelector('.section-articulos');
+     if (!sectionArticulos) {
+       // console.error('[ERROR] No se encontró el contenedor .section-articulos en ezpezialez.html');
+       return;
+     }
+
+     // Limpiar contenido previo por si acaso
+     sectionArticulos.innerHTML = '';
+
+     articulos.forEach(articulo => {
+       const card = document.createElement('div');
+       card.classList.add('card-articulo');
+
+       // Clonar el nodo para no moverlo del DOM original de index.html
+       const clone = articulo.cloneNode(true);
+       card.appendChild(clone);
+
+       sectionArticulos.appendChild(card);
+     });
+
+     // console.log('[DEBUG] Artículos inyectados en .section-articulos dentro de .card-articulo');
+
+   } catch (err) {
+     console.error('[ERROR] No se pudo obtener index.html:', err);
+   }
+
+  
+ });
 
 

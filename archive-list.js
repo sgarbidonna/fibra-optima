@@ -1,24 +1,26 @@
-const filename = location.pathname.split('/').pop();
-if (filename !== 'ezpezialez.html') return; // solo en esa página
+// ===============================
+// archive-list.js
+// ===============================
 
 if (!isMobile) {
-  console.log('[archive-list.js] ejecutando en web');
-
+  console.log('archive-list.js only on web');
+  
   document.addEventListener('DOMContentLoaded', () => {
-    const section = document.querySelector('.section-articulos');
+    const section = document.getElementById('section-articulos');
     const archiveList = document.getElementById('archive-list');
 
     if (!section || !archiveList) {
-      console.warn('[archive-list.js] No se encontró .section-articulos o #archive-list');
+      console.warn('[archive-list.js] No se encontró #section-articulos o #archive-list');
       return;
     }
 
-    // 🧠 Observer que espera a que se inyecten artículos
+    // Usamos MutationObserver para esperar a que los artículos sean inyectados
     const observer = new MutationObserver((mutations, obs) => {
-      const articles = section.querySelectorAll('.card-articulo');
+      const articles = document.querySelectorAll('.card-tags');
+
       if (articles.length > 0) {
-        obs.disconnect(); // detener inmediatamente
-        console.log(`[archive-list.js] Detectados ${articles.length} artículos — construyendo lista...`);
+        obs.disconnect(); // ✂️ Dejamos de observar
+        console.log(`[archive-list.js] Detectados ${articles.length} artículos — construyendo lista de archivo...`);
         buildArchiveList(articles, archiveList);
       }
     });
@@ -29,10 +31,9 @@ if (!isMobile) {
       const archiveData = {};
 
       articles.forEach(article => {
-        // Buscar posibles metadatos dentro del artículo
         const year = article.dataset.year;
         const month = article.dataset.month;
-        const rawId = article.dataset.id || 'sin-id';
+        const rawId = article.dataset.id;
         const title = rawId.replace(/-/g, ' ');
 
         if (!archiveData[year]) archiveData[year] = {};
@@ -51,30 +52,28 @@ if (!isMobile) {
         const yearBtn = document.createElement('button');
         yearBtn.textContent = year;
         yearBtn.classList.add('archive-year');
-
-        const monthList = document.createElement('ul');
-        monthList.classList.add('archive-month-list');
-
         yearBtn.addEventListener('click', () => {
           monthList.classList.toggle('visible');
         });
 
+        const monthList = document.createElement('ul');
+        monthList.classList.add('archive-month-list');
+
         const months = Object.keys(archiveData[year]).sort(
-          (a, b) => monthOrder.indexOf(a.toUpperCase()) - monthOrder.indexOf(b.toUpperCase())
+          (a, b) => monthOrder.indexOf(a.toLowerCase()) - monthOrder.indexOf(b.toLowerCase())
         );
 
         months.forEach(month => {
           const monthItem = document.createElement('li');
           const monthBtn = document.createElement('button');
-          monthBtn.textContent = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
+          monthBtn.textContent = month.charAt(0).toUpperCase() + month.slice(1);
           monthBtn.classList.add('archive-month');
-
-          const titleList = document.createElement('ul');
-          titleList.classList.add('archive-title-list');
-
           monthBtn.addEventListener('click', () => {
             titleList.classList.toggle('visible');
           });
+
+          const titleList = document.createElement('ul');
+          titleList.classList.add('archive-title-list');
 
           const titles = archiveData[year][month].sort((a, b) => a.localeCompare(b));
           titles.forEach(title => {
