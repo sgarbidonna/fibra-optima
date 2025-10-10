@@ -102,17 +102,18 @@
         </div>
 
 
+      
       <div class="tags" id="tags">
         <div class="tag" data-tag="electronico">Electrónico</div>
-        <div class="tag" data-tag="acustico">Acústico</div>
+        <div class="tag" data-tag="metal">metal</div>
         <div class="tag" data-tag="experimental">Experimental</div>
         <div class="tag" data-tag="jazzi">Jazzi</div>
         <div class="tag" data-tag="punki">Punki</div>
         <div class="tag" data-tag="ambiental">Ambiental</div>
         <div class="tag" data-tag="de-pista">De-Pista</div>
-        <div class="tag" data-tag="soniko"> Sónik.o</div>
-        <div class="tag" data-tag="dreampop"> Dreampop</div>
-        <div class="tag" data-tag="indierock"> indie rock</div>
+        <div class="tag" data-tag="synths"> synths </div>
+        <div class="tag" data-tag="folk"> Folk </div>
+        <div class="tag" data-tag="indierock"> Indie rock</div>
         <div class="tag" data-tag="cantautoreo">Cantautóreo</div>
         
         <div class="tag" data-tag="argentina">Argentina</div>
@@ -209,8 +210,23 @@
 
     </div>
 
+
+  <script src="./preloader.js"></script>     
+
+  <script src="./tags-ezpezialez.js"></script>
+  
+
+  <script src="./load-print-articulos.js"></script>
+  <script src="./search.js"></script>
+  
+  <script src="./menu-behavior.js"></script>
+  
+  <script src="./archive-list.js"></script>
+
+     
+  
 <script>
-  function linksRecomendaciones(link) {
+  function linksTo(link) {
     // console.log(link);
     window.open(link, "_blank"); 
   }
@@ -223,18 +239,10 @@
   const mobileMenu = document.getElementById('mobile-menu');
 
   menuBtn.addEventListener('click', () => {
-    // console.log('call open');
     mobileMenu.classList.toggle('open');
   });
 </script>
 
-    <script src="./tags-ezpezialez.js"></script>
-    <script src="./menu-behavior.js">  </script>
-    <script src="./preloader.js">  </script>
-    <script src="./search.js"></script>
-    <script src="./load-print-articulos.js"></script>
 
-    <script src="./archive-list.js"></script>
-</script>
 </body>
 </html>

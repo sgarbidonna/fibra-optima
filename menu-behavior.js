@@ -53,14 +53,21 @@
 
 // const menuTags = document.getElementById('menu-tags');
 
+const isTablet = window.matchMedia("(min-width: 820px) and (max-width: 1024px)").matches;
+const isMobile = window.matchMedia("(max-width: 819px)").matches;
+const isWeb = window.matchMedia("(min-width: 1025px)").matches;
 
+
+const tags = document.getElementById('tags');
 
 const menuXqsomos = document.getElementById('menu-xqsomos');
-const menuSets = document.getElementById('menu-sets');
-const tags = document.getElementById('tags');
 const xqsomosPanel = document.getElementById('xqsomos-panel');
-const setsPanel = document.getElementById('sets-panel');
 
+// const menuSets = document.getElementById('menu-sets');
+// const setsPanel = document.getElementById('sets-panel');
+
+
+console.log('estoy en menu-behaviour');
 
 menuTags.addEventListener('click', () => {
   if (!tags) return;
@@ -72,6 +79,7 @@ if (isWeb) {
 
   /***  XQSOMOS PANEL ***/
   menuXqsomos.addEventListener('mouseenter', () => {
+    console.log('entro hover xqsomos');
     xqsomosPanel.style.opacity = '1';
   });
 
@@ -92,17 +100,17 @@ if (isWeb) {
   });
 
   /***  SETS PANEL ***/
-  menuSets.addEventListener('mouseenter', () => {
-    setsPanel.style.opacity = '1';
-  });
+  // menuSets.addEventListener('mouseenter', () => {
+  //   setsPanel.style.opacity = '1';
+  // });
 
-  menuSets.addEventListener('mouseleave', () => {
-    setTimeout(() => {
-      if (!setsPanel.matches(':hover')) {
-        setsPanel.style.opacity = '0';
-      }
-    }, 100);
-  });
+  // menuSets.addEventListener('mouseleave', () => {
+  //   setTimeout(() => {
+  //     if (!setsPanel.matches(':hover')) {
+  //       setsPanel.style.opacity = '0';
+  //     }
+  //   }, 100);
+  // });
 
 }
 
@@ -116,18 +124,18 @@ else if (isTablet) {
   });
 
   /***  SETS PANEL ***/
-  menuSets.addEventListener('touchstart', (e) => {
-    e.stopPropagation();
-    setsPanel.classList.toggle('active');
-  });
+  // menuSets.addEventListener('touchstart', (e) => {
+  //   e.stopPropagation();
+  //   setsPanel.classList.toggle('active');
+  // });
 
   // Cerrar paneles si tocás fuera
   document.addEventListener('touchstart', (e) => {
     if (!menuXqsomos.contains(e.target) && !xqsomosPanel.contains(e.target)) {
       xqsomosPanel.classList.remove('active');
     }
-    if (!menuSets.contains(e.target) && !setsPanel.contains(e.target)) {
-      setsPanel.classList.remove('active');
-    }
+    // if (!menuSets.contains(e.target) && !setsPanel.contains(e.target)) {
+    //   setsPanel.classList.remove('active');
+    // }
   });
 }

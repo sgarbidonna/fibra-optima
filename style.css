@@ -695,19 +695,22 @@ input{
 }
 
 ul {
-  list-style: none;
+  list-style:none ;
 }
 
 li::before {
-  content: '';
+  content: '► ';
 }
 
 #menu-recomendaciones, 
 #menu-blockg,
-#menu-ezpezialez,
+#menu-ezpezialez{
+  display: none;
+}
+
 #menu-recomendaciones-ezpezialez,
 #menu-blockg-ezpezialez{
-  display: none;
+  font-weight: 800;
 }
 
 /*TABLET*/
@@ -850,7 +853,7 @@ li::before {
     overflow-y: scroll;
     height: calc(100vh - 10px);
     max-height: calc(100vh - 10px);
-  
+    padding-bottom: 5vh;
   }
 
 

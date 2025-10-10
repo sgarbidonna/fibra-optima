@@ -39,7 +39,7 @@
 
      
   <a  href="./index.html" > RECOMENDACIONES </a>
-  <a  href="./index.html" > BLOCKGS </a>      
+  <a  href="./index.html" > BLOCKG </a>      
   <a  href="./ezpezialez.html" > EZPEZIALEZ </a>
   <a  href="https://soundcloud.com/fibraoptima" >sets</a>
   <a href="https://www.youtube.com/@fibraoptima" >karaokeloké</a>
@@ -221,7 +221,7 @@
         </div>
   
         <div class="section" id="section-b">
-          <div class="section-header"  id="section-b-title">BLOCKGS</div>
+          <div class="section-header"  id="section-b-title">BLOCKG</div>
           <div class="blockg-content">
 
             <div class="card-blockg" data-tags="argentina, 90s, indierock">
@@ -580,7 +580,7 @@
 <script>
   // Función para redirigir a ./ezpezialez.html
   function goToEzpezialez() {
-    window.location.href = './ezpezialez.html';
+    window.open('./ezpezialez.html', '_blank');
   }
 
   // Elementos
@@ -605,8 +605,8 @@
 
   <!-- <script src="./scroll-by-section.js">  </script> -->
   <script src="./tags.js"></script>
-  <script src="./sections-behavior.js">  </script>
   <script src="./menu-behavior.js">  </script>
+  <script src="./sections-behavior.js">  </script>
   <script src="./preloader.js">  </script>
   <script src="./section-ezpezialez.js"></script>
   <script src="./load-print-articulos.js"></script>
@@ -617,7 +617,6 @@
   const mobileMenu = document.getElementById('mobile-menu');
 
   menuBtn.addEventListener('click', () => {
-    // console.log('call open');
     mobileMenu.classList.toggle('open');
   });
 </script>
