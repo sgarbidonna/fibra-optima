@@ -716,6 +716,10 @@ li::before {
 /*TABLET*/
 @media (min-width: 821px) and (max-width: 1200px) {
 
+  .sidebar{
+    height: 90vh;
+  }
+
   #section-ezpezialez{
     display: none;
   }
