@@ -292,6 +292,12 @@ width: 0px;}
     cursor: pointer;
   }
 
+  #section-ezpezialez .card-ezpezial{
+    background: linear-gradient(180deg, rgba(154, 193, 127, 1) 0%, rgba(240, 240, 240, 1) 95%);
+    border-radius: 20px;
+  }
+
+
       /* Cuando está expandido */ 
     .card-ezpezial.expanded {
       height:90vh; 
