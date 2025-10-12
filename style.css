@@ -648,6 +648,10 @@ audio{
       transition: all 0.5s ease;
   }
 
+  #section-ezpezialez-title{
+    /* background: rgba(93, 107, 84, 1); */
+  }
+
   .card-articulo{
     height: auto;
     margin-bottom: 1.5em;
