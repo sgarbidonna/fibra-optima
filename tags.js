@@ -8,20 +8,32 @@ let activeTags = new Set();
 function filterByTags() {
   // Obtener todas las cards de las 3 secciones
   const cards = document.querySelectorAll('.card-recomendaciones, .card-blockg, .card-tags');
+  const especiales = document.querySelectorAll('.card-ezpezial');
 
   if (activeTags.size === 0) {
     // Si no hay tags activos, mostrar todas las cards
     cards.forEach(card => {
       card.style.display = '';
     });
+    // Quitar fondo especial a card-ezpezial
+    especiales.forEach(ezpezial => {
+      ezpezial.style.background = '';
+    });
     return;
   }
 
+  // Filtrar cards normales
   cards.forEach(card => {
     const cardTags = card.dataset.tags ? card.dataset.tags.split(',').map(t => t.trim()) : [];
-    // Mostrar card si alguno de sus tags está activo
     const isVisible = cardTags.some(tag => activeTags.has(tag));
     card.style.display = isVisible ? '' : 'none';
+  });
+
+  // Manejar cards especiales
+  especiales.forEach(ezpezial => {
+    const cardTags = ezpezial.dataset.tags ? ezpezial.dataset.tags.split(',').map(t => t.trim()) : [];
+    const isVisible = cardTags.some(tag => activeTags.has(tag));
+    ezpezial.style.background = isVisible ? '' : '#f0f0f0';
   });
 }
 
