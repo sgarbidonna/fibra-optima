@@ -345,7 +345,60 @@ width: 0px;}
     margin: 7px;  
   }
 
-  
+  #overlay-blockg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.detalle-blockg {
+  position: relative;
+  background: #fff;
+  width: 90%;
+  height: 80%;
+  overflow-y: auto;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detalle-blockg .contenido {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.detalle-blockg .fecha-al-pie {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+#flecha-prev-blockg { left: 10px; }
+#flecha-next-blockg { right: 10px; }
+
   .card-ezpezial{
     /* border-bottom: 1px solid #000; */
     padding: 0 1rem 11rem 0;
