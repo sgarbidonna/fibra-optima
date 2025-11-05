@@ -480,6 +480,7 @@ width: 0px;}
   transition: opacity 0.4s ease;
   pointer-events: none;
   overflow-y: scroll;
+text-align: justify;
 }
 
 #menu-xqsomos:hover + #xqsomos,
@@ -754,7 +755,19 @@ li::before {
 #menu-blockg-ezpezialez{
   font-weight: 800;
 }
-
+.xqsomos-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9996;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
 .disclaimer-call {
     position: absolute;
     padding: 15px 0px 15px 4px;
