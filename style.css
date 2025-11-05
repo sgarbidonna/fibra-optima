@@ -275,6 +275,69 @@ width: 0px;}
   }
 
 
+  /* Overlay oscuro detrás */
+#overlay-detalle {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Card ampliada */
+#overlay-detalle .detalle-card {
+  background: #fff;
+  border-radius: 1rem;
+  width: 90vw;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#overlay-detalle img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+
+#overlay-detalle h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+#overlay-detalle p {
+  padding: 0 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Flechas navegación */
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  opacity: 0.6;
+}
+
+.flecha:hover {
+  opacity: 1;
+}
+
+#flecha-prev { left: 1rem; }
+#flecha-next { right: 1rem; }
+
+
   .card-blockg{
     align-items: center;
     border-bottom: 1px solid #000;
@@ -291,12 +354,12 @@ width: 0px;}
     overflow-y: hidden;
     transition: height 0.5s ease, padding 0.3s ease;
     cursor: pointer;
+    border-style: solid;
+    border-width: thin;
   }
 
   #section-ezpezialez .card-ezpezial{
-    background: linear-gradient(180deg, rgba(154, 193, 127, 1) 0%, rgba(240, 240, 240, 1) 95%);
-    background: linear-gradient(180deg, rgba(93, 107, 84, 1) 0%, rgba(240, 240, 240, 1) 80%);
-    background: rgba(93,107,84,1);
+    /* background: rgba(93,107,84,1); */
     /* BYN */
     /* background: linear-gradient(180deg, rgb(90, 90, 90) 0%, rgba(240, 240, 240, 1) 80%); */
     border-radius: 20px;
