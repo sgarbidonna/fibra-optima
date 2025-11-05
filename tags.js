@@ -6,36 +6,49 @@ let activeTags = new Set();
 
 // Función para filtrar cards según tags activados
 function filterByTags() {
-  // Obtener todas las cards de las 3 secciones
   const cards = document.querySelectorAll('.card-recomendaciones, .card-blockg, .card-tags');
   const especiales = document.querySelectorAll('.card-ezpezial');
 
   if (activeTags.size === 0) {
-    // Si no hay tags activos, mostrar todas las cards
-    cards.forEach(card => {
-      card.style.display = '';
-    });
-    // Quitar fondo especial a card-ezpezial
-    especiales.forEach(ezpezial => {
-      ezpezial.style.background = '';
+    [...cards, ...especiales].forEach(card => {
+      card.classList.remove('card-hidden');
+      setTimeout(() => (card.style.display = ''), 400);
     });
     return;
   }
 
-  // Filtrar cards normales
+  // Filtrar tarjetas normales (recomendaciones y blockg)
   cards.forEach(card => {
     const cardTags = card.dataset.tags ? card.dataset.tags.split(',').map(t => t.trim()) : [];
     const isVisible = cardTags.some(tag => activeTags.has(tag));
-    card.style.display = isVisible ? '' : 'none';
+
+    if (isVisible) {
+      card.style.display = '';
+      setTimeout(() => card.classList.remove('card-hidden'), 10);
+    } else {
+      card.classList.add('card-hidden');
+      setTimeout(() => (card.style.display = 'none'), 400);
+    }
   });
 
-  // Manejar cards especiales
+  // Filtrar tarjetas ezpezialez correctamente
   especiales.forEach(ezpezial => {
-    const cardTags = ezpezial.dataset.tags ? ezpezial.dataset.tags.split(',').map(t => t.trim()) : [];
+    const innerCard = ezpezial.querySelector('.card-tags');
+    if (!innerCard) return;
+
+    const cardTags = innerCard.dataset.tags ? innerCard.dataset.tags.split(',').map(t => t.trim()) : [];
     const isVisible = cardTags.some(tag => activeTags.has(tag));
-    ezpezial.style.background = isVisible ? '' : '#f0f0f0';
+
+    if (isVisible) {
+      ezpezial.style.display = '';
+      setTimeout(() => ezpezial.classList.remove('card-hidden'), 10);
+    } else {
+      ezpezial.classList.add('card-hidden');
+      setTimeout(() => (ezpezial.style.display = 'none'), 400);
+    }
   });
 }
+
 
 // Manejar click en tags para activar/desactivar filtro
 allTags.forEach(tagEl => {

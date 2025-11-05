@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Solo en mobile
-  if (window.matchMedia("(max-width: 1024px)").matches) {
+  if (window.matchMedia("(max-width: 1200px)").matches) {
 
     const cards = document.querySelectorAll(".card-recomendaciones");
     let currentIndex = 0;
