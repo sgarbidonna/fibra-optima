@@ -50,6 +50,10 @@
 
 
     <div class="container">
+ 
+ <div class="disclaimer-call">
+   (?!)
+ </div>
 
         <!-- MENU WEB & TABLET -->
       <div class="sidebar">
@@ -80,7 +84,7 @@
             
               <div class="card-recomendaciones" data-tags="internacionales, 80s, electronico, synths" data-index="6">
                 <div class="card-recomendaciones-text">
-                  <h3 onclick="linksTo('https://www.discogs.com/es/master/67992-New-Musik-Warp');" style="cursor: pointer;">New Musik - Warp</h3>
+                  <h3 onclick="linksTo('https://www.discogs.com/es/master/67992-New-Musik-Warp');" style="cursor: cell;">New Musik - Warp</h3>
                   <h4>1982 - Epic</h4>
                   <p>Un poema x completo, que sintetiza muy bien la identidad
                   sonora ochentera. Como la polenta, algo tan genuino
@@ -288,7 +292,7 @@
                   
                   <p>
                     Para abarcar por completo los frutos de la carrera que forj&oacute; Martin Bisi deber&iacute;a redactar un papiro directamente. 
-                    Y ahondar en eso tampoco es el fin del comunicado espec&iacute;ficamente.
+                    Y ahondar en eso tampoco es e l fin del comunicado espec&iacute;ficamente.
                   </p>
 
                   <p>
@@ -330,7 +334,7 @@
                   </p>
                   
                   <br />
-                  <img onclick="linksTo('https://www.discogs.com/es/master/165012-Martin-Bisi-Creole-Mass');" src="https://i.discogs.com/NrAqXgnHUBqh9AXmtYLa6KzoJ9UnqH7nTawj45i7odc/rs:fit/g:sm/q:90/h:586/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgzNTk1/Ni0xMTYzNzE1MDk4/LmpwZWc.jpeg" style='cursor: pointer;' alt="" width="200" height="196" />
+                  <img onclick="linksTo('https://www.discogs.com/es/master/165012-Martin-Bisi-Creole-Mass');" src="https://i.discogs.com/NrAqXgnHUBqh9AXmtYLa6KzoJ9UnqH7nTawj45i7odc/rs:fit/g:sm/q:90/h:586/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgzNTk1/Ni0xMTYzNzE1MDk4/LmpwZWc.jpeg" style='cursor: cell;' alt="" width="200" height="196" />
                   <br /> 
                   
                   <h2 style="text-decoration: underline;">
@@ -468,7 +472,7 @@
                   <img 
                     onclick="linksTo('https://www.discogs.com/master/32604-Brian-Eno-Ambient-1-Music-For-Airports');" 
                     src="https://i.discogs.com/irCL_v86uWplGwlkfEEdKEY5MnC2HNF_nZt-85Te7vI/rs:fit/g:sm/q:90/h:600/w:594/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUyMDQ4/Ni0xNzM5ODUzMjI4/LTI4NjEuanBlZw.jpeg" 
-                    style="cursor: pointer;" 
+                    style="cursor: cell;" 
                     alt="Brian Eno - Ambient 1" 
                     width="200" 
                     height="200" 
@@ -521,7 +525,7 @@
                   <img 
                     onclick="linksTo('https://www.discogs.com/master/151548-Sumo-Divide-Y-Conquistar%C3%A1s');" 
                     src="https://i.discogs.com/qfjcfjYB0sNj0NVhO5o_W0GVLiRHfuAOtDQn4iZhXTk/rs:fit/g:sm/q:90/h:416/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY2MjAw/MjAtMTYxMTA5MTU3/MS0yMzQ1LmpwZWc.jpeg" 
-                    style="cursor: pointer;" 
+                    style="cursor: cell;" 
                     alt="Sumo - Divide y Conquistarás" 
                     width="200" 
                     height="200" 
@@ -585,7 +589,7 @@
        <br> <p>
           A través de una selección curada, propone orientar la escucha y ampliar el horizonte musical de cada visitante. Aunque en esencia, el texto será solo la excusa y puerta de entrada del objetivo fundamental: seguir difundiendo sonoridades y militar la cultura del disco.
         </p>
-        
+<!--         
         <br><br>
         <p>
           <span class="titulo-xqsomos" >RECOMENDACIONES </span>
@@ -615,7 +619,7 @@
           <span class="titulo-xqsomos" >KARAOKELOKÉ </span>
            -> perlitas de karaoke en alta resolución para cantarle a la ducha y tus amigxs. 
           Canciones que consideramos infaltables, pero que en muchos casos faltan ó en su defecto, suenan tan mal que te rompen el tímpano.
-        </p>
+        </p> -->
 
         <br><br>
         <div class="social-icons">
@@ -757,6 +761,25 @@ window.addEventListener('load', () => {
 
   }, 3000);
 });
+
+
+
+
+const disclaimerCall = document.querySelector('.disclaimer-call');
+const disclaimerOverlay = document.getElementById('disclaimer-overlay');
+
+disclaimerCall.addEventListener('click', () => {
+  disclaimerOverlay.classList.toggle('active');
+});
+
+// Cerrar al hacer click fuera del box
+disclaimerOverlay.addEventListener('click', (e) => {
+  if (e.target === disclaimerOverlay) {
+    disclaimerOverlay.classList.remove('active');
+  }
+});
+
+
 </script>
 
 

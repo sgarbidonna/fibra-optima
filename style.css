@@ -755,6 +755,17 @@ li::before {
   font-weight: 800;
 }
 
+.disclaimer-call {
+    position: absolute;
+    padding: 15px 0px 15px 4px;
+    color: red;
+    font-weight: 900;
+    font-size: 22px;
+    cursor: cell;
+    user-select: none;
+    z-index: 9997;
+}
+
 #disclaimer-overlay {
   position: fixed;
   inset: 0;
@@ -762,7 +773,7 @@ li::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 9996;
   backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
@@ -805,9 +816,13 @@ li::before {
 }
 
 
+
 /*TABLET*/
 @media (min-width: 821px) and (max-width: 1200px) {
 
+  .disclaimer-call{
+    display: none;
+  }
   #disclaimer-box{
     max-width: 80vw;
   }
@@ -922,7 +937,7 @@ height: 50vh;
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 9996;
   padding: 1rem;
 }
 
@@ -969,7 +984,9 @@ height: 50vh;
 
 /*MOBILE*/
 @media (max-width: 820px) {
-
+  .disclaimer-call{
+    display: none;
+  }
   
   body {
     overflow-y: auto; 
@@ -1278,6 +1295,8 @@ input {
   #disclaimer-box p {
     font-size: 0.7rem;
     margin: 0.5rem 0;
+  text-align: justify;
+
   }
 
   
