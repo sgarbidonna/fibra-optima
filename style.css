@@ -931,6 +931,7 @@ li::before {
 /*MOBILE*/
 @media (max-width: 820px) {
 
+  
   body {
     overflow-y: auto; 
     max-height: 100%; 
@@ -1230,5 +1231,11 @@ input {
   font-weight: 700;
 }
 
+
+#disclaimer-box{
+    max-width: 88vw;
+  }
+  
+  
 }
 
