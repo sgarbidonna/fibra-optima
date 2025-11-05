@@ -14,9 +14,9 @@
       overflow: hidden;
       background: #f0f0f0;
       transition: background-color 0.5s ease;
-      cursor: url('./assets/fibra-optima-128px.ico'), auto;
-      cursor: url('./assets/fibra-optima-32px.ico'), auto;
-      /* cursor: url('./assets/fibra-optima-32px-white.ico'), auto; */
+      /* cursor: url('./assets/fibra-optima-128px.ico'), 64 0, auto; */
+      cursor: url('./assets/fibra-optima-32px.ico') 16 0, auto;
+
       /* cursor: crosshair; */
     }
 
@@ -1236,6 +1236,9 @@ input {
     max-width: 88vw;
   }
   
-  
+  #disclaimer-box p {
+    font-size: 0.7rem;
+    margin: 0.5rem 0;
+  }
 }
 
