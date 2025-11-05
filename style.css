@@ -851,9 +851,57 @@ li::before {
   font-weight: 800;
 }
 
+#disclaimer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#disclaimer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#disclaimer-box {
+  background: #f8f8f8;
+  color: #111;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  font-family: 'Cascadia Code', monospace;
+  line-height: 1.4;
+  text-align: left;
+}
+
+#disclaimer-box h2 {
+  font-family: 'Special Elite', monospace;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#disclaimer-box p {
+  font-size: 0.9rem;
+  margin: 0.6rem 0;
+}
+
+
+
 /*TABLET*/
 @media (min-width: 821px) and (max-width: 1200px) {
 
+  #disclaimer-box{
+    max-width: 88vw;
+  }
   .sidebar{
     height: 90vh;
   }
