@@ -899,6 +899,10 @@ height: 50vh;
 #flecha-prev { left: 1rem; }
 #flecha-next { right: 1rem; }
 
+.blockg-content{
+      padding-top: 15px;
+
+}
 
   .card-blockg{
     align-items: center;
