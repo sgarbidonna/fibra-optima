@@ -799,6 +799,11 @@ li::before {
 }
 
 
+.blockg-content{
+      padding-top: 15px;
+
+}
+
 
 /*TABLET*/
 @media (min-width: 821px) and (max-width: 1200px) {
@@ -899,10 +904,6 @@ height: 50vh;
 #flecha-prev { left: 1rem; }
 #flecha-next { right: 1rem; }
 
-.blockg-content{
-      padding-top: 15px;
-
-}
 
   .card-blockg{
     align-items: center;
