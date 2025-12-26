@@ -1,47 +1,65 @@
-
 window.addEventListener('load', () => {
   // Ocultar preloader después de 3 segundos
   setTimeout(() => {
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.classList.add('hide');
 
-    // Mostrar disclaimer después de ocultar el preloader
-    const overlay = document.getElementById('disclaimer-overlay');
-    const box = document.getElementById('disclaimer-box');
+    const disclaimerOverlay = document.getElementById('disclaimer-overlay');
+    const disclaimerBox = document.getElementById('disclaimer-box');
+    const disclaimerCall = document.querySelector('.disclaimer-call');
 
+    if (!disclaimerOverlay || !disclaimerBox) return;
+
+    // -------- FUNCION CENTRAL DE CIERRE --------
+    function cerrarDisclaimer() {
+      disclaimerOverlay.classList.remove('active');
+    }
+
+    // -------- MOSTRAR DISCLAIMER --------
     setTimeout(() => {
-      overlay.classList.add('active');
-    }, 200); // pequeño delay para transiciones suaves
+      disclaimerOverlay.classList.add('active');
+    }, 200);
 
-    // Cerrar al hacer clic afuera del cuadro
-    overlay.addEventListener('click', (e) => {
-      if (!box.contains(e.target)) {
-        overlay.classList.remove('active');
+    // -------- CLICK AFUERA --------
+    disclaimerOverlay.addEventListener('click', (e) => {
+      if (!disclaimerBox.contains(e.target)) {
+        cerrarDisclaimer();
       }
     });
 
-    // Cerrar con tecla ESC
+    // -------- TECLA ESC --------
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') overlay.classList.remove('active');
+      if (e.key === 'Escape') cerrarDisclaimer();
+    });
+
+    // -------- BOTON / LLAMADA MANUAL --------
+    if (disclaimerCall) {
+      disclaimerCall.addEventListener('click', () => {
+        disclaimerOverlay.classList.toggle('active');
+      });
+    }
+
+    // -------- SWIPE UP / DOWN --------
+    let startY = 0;
+    let startX = 0;
+
+    disclaimerOverlay.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
+    });
+
+    disclaimerOverlay.addEventListener('touchend', (e) => {
+      const endY = e.changedTouches[0].clientY;
+      const endX = e.changedTouches[0].clientX;
+
+      const diffY = endY - startY;
+      const diffX = endX - startX;
+
+      // Swipe vertical dominante → cerrar (UP o DOWN)
+      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
+        cerrarDisclaimer();
+      }
     });
 
   }, 3000);
 });
-
-
-
-
-const disclaimerCall = document.querySelector('.disclaimer-call');
-const disclaimerOverlay = document.getElementById('disclaimer-overlay');
-
-disclaimerCall.addEventListener('click', () => {
-  disclaimerOverlay.classList.toggle('active');
-});
-
-// Cerrar al hacer click fuera del box
-disclaimerOverlay.addEventListener('click', (e) => {
-  if (e.target === disclaimerOverlay) {
-    disclaimerOverlay.classList.remove('active');
-  }
-});
-

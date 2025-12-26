@@ -1345,7 +1345,27 @@ input {
 
   }
 
-  
+  #disclaimer-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+#disclaimer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#disclaimer-box {
+  transform: translateY(40px);
+  transition: transform .35s ease;
+}
+
+#disclaimer-overlay.active #disclaimer-box {
+  transform: translateY(0);
+}
+
+
   /* Overlay oscuro detrás */
 #overlay-detalle {
   position: fixed;
