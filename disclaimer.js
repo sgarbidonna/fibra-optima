@@ -1,64 +1,109 @@
 window.addEventListener('load', () => {
-  // Ocultar preloader después de 3 segundos
   setTimeout(() => {
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.classList.add('hide');
 
-    const disclaimerOverlay = document.getElementById('disclaimer-overlay');
-    const disclaimerBox = document.getElementById('disclaimer-box');
-    const disclaimerCall = document.querySelector('.disclaimer-call');
+    const overlay = document.getElementById('disclaimer-overlay');
+    const box = document.getElementById('disclaimer-box');
+    const call = document.querySelector('.disclaimer-call');
 
-    if (!disclaimerOverlay || !disclaimerBox) return;
+    if (!overlay || !box) return;
 
-    // -------- FUNCION CENTRAL DE CIERRE --------
-    function cerrarDisclaimer() {
-      disclaimerOverlay.classList.remove('active');
+    /* ===============================
+       FUNCIONES
+    =============================== */
+
+    function mostrarDisclaimer() {
+      overlay.classList.add('active');
+      box.style.transform = '';
+      box.style.opacity = '';
     }
 
-    // -------- MOSTRAR DISCLAIMER --------
-    setTimeout(() => {
-      disclaimerOverlay.classList.add('active');
-    }, 200);
+    function cerrarDisclaimer() {
+      box.style.transition = 'transform 0.35s ease, opacity 0.35s ease';
+      box.style.transform = 'translateY(-120px)';
+      box.style.opacity = '0';
 
-    // -------- CLICK AFUERA --------
-    disclaimerOverlay.addEventListener('click', (e) => {
-      if (!disclaimerBox.contains(e.target)) {
-        cerrarDisclaimer();
-      }
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        box.style.transition = '';
+        box.style.transform = '';
+        box.style.opacity = '';
+      }, 350);
+    }
+
+    /* ===============================
+       MOSTRAR AUTOMÁTICO
+    =============================== */
+
+    setTimeout(mostrarDisclaimer, 200);
+
+    /* ===============================
+       CLICK / ESC
+    =============================== */
+
+    overlay.addEventListener('click', e => {
+      if (!box.contains(e.target)) cerrarDisclaimer();
     });
 
-    // -------- TECLA ESC --------
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Escape') cerrarDisclaimer();
     });
 
-    // -------- BOTON / LLAMADA MANUAL --------
-    if (disclaimerCall) {
-      disclaimerCall.addEventListener('click', () => {
-        disclaimerOverlay.classList.toggle('active');
+    if (call) {
+      call.addEventListener('click', () => {
+        overlay.classList.contains('active')
+          ? cerrarDisclaimer()
+          : mostrarDisclaimer();
       });
     }
 
-    // -------- SWIPE UP / DOWN --------
-    let startY = 0;
-    let startX = 0;
+    /* ===============================
+       DRAG REAL (SWIPE)
+    =============================== */
 
-    disclaimerOverlay.addEventListener('touchstart', (e) => {
-      startY = e.touches[0].clientY;
-      startX = e.touches[0].clientX;
+    let startX = 0;
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+
+    overlay.addEventListener('touchstart', e => {
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      isDragging = true;
+
+      box.style.transition = 'none';
     });
 
-    disclaimerOverlay.addEventListener('touchend', (e) => {
-      const endY = e.changedTouches[0].clientY;
-      const endX = e.changedTouches[0].clientX;
+    overlay.addEventListener('touchmove', e => {
+      if (!isDragging) return;
 
-      const diffY = endY - startY;
-      const diffX = endX - startX;
+      const touch = e.touches[0];
+      currentY = touch.clientY - startY;
+      const currentX = touch.clientX - startX;
 
-      // Swipe vertical dominante → cerrar (UP o DOWN)
-      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
-        cerrarDisclaimer();
+      // solo drag vertical dominante
+      if (Math.abs(currentY) > Math.abs(currentX)) {
+        box.style.transform = `translateY(${currentY * 0.7}px)`;
+        box.style.opacity = `${1 - Math.min(Math.abs(currentY) / 300, 0.4)}`;
       }
+    });
+
+    overlay.addEventListener('touchend', () => {
+      isDragging = false;
+      box.style.transition = 'transform 0.35s ease, opacity 0.35s ease';
+
+      // swipe vertical → cerrar (UP o DOWN)
+      if (Math.abs(currentY) > 80) {
+        cerrarDisclaimer();
+      } else {
+        // volver a posición original
+        box.style.transform = 'translateY(0)';
+        box.style.opacity = '1';
+      }
+
+      currentY = 0;
     });
 
   }, 3000);
