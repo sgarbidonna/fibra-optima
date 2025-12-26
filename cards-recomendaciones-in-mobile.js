@@ -145,8 +145,8 @@ function irNext() {
       const diffX = endX - startX;
       const diffY = endY - startY;
 
-      // Swipe vertical dominante → cerrar
-      if (Math.abs(diffY) > Math.abs(diffX) && diffY > 70) {
+      // Swipe vertical dominante → cerrar (UP o DOWN)
+      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
         cerrarOverlay();
         return;
       }
