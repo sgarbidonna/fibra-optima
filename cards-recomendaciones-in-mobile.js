@@ -45,20 +45,21 @@ document.addEventListener("DOMContentLoaded", () => {
     currentIndex = index;
   }
 
-  function cerrarOverlay() {
+function cerrarOverlayHaciaArriba() {
+  detalleCard.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+  detalleCard.style.transform = "translateY(-140px)";
+  detalleCard.style.opacity = "0";
+
+  setTimeout(() => {
+    overlay.classList.remove("active");
+    overlay.style.display = "none";
+
     detalleCard.style.transition = "";
     detalleCard.style.transform = "";
     detalleCard.style.opacity = "";
-    detalleCard.offsetHeight;
+  }, 350);
+}
 
-    detalleCard.classList.add("closing");
-
-    setTimeout(() => {
-      overlay.classList.remove("active");
-      overlay.style.display = "none";
-      detalleCard.classList.remove("closing");
-    }, 350);
-  }
 
   function cambiarCard(direccion) {
     const salida = direccion === "left" ? -120 : 120;
@@ -152,10 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // cierre vertical
     if (absY > absX && absY > 120) {
-      cerrarOverlay();
+      cerrarOverlayHaciaArriba();
       resetDrag();
       return;
     }
+
 
     // navegación horizontal
     if (absX > absY && absX > 100) {
