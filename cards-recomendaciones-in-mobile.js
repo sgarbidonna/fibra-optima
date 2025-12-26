@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Solo en mobile
   if (window.matchMedia("(max-width: 1200px)").matches) {
 
     const cards = document.querySelectorAll(".card-recomendaciones");
     let currentIndex = 0;
 
-    // Crear overlay
     const overlay = document.createElement("div");
     overlay.id = "overlay-detalle";
     overlay.innerHTML = `
@@ -19,19 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.body.appendChild(overlay);
 
+    const detalleCard = overlay.querySelector(".detalle-card");
     const img = overlay.querySelector("img");
     const title = overlay.querySelector("h3");
     const text = overlay.querySelector("p");
     const prevBtn = overlay.querySelector("#flecha-prev");
     const nextBtn = overlay.querySelector("#flecha-next");
 
-    // Obtener URL de fondo
     function getBackgroundUrl(element) {
       const bg = window.getComputedStyle(element).backgroundImage;
       return bg.slice(5, -2);
     }
 
-    // Mostrar detalle
     function mostrarDetalle(index) {
       const card = cards[index];
       const imgDiv = card.querySelector(".card-recomendaciones-img");
@@ -41,11 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
       title.textContent = card.querySelector("h3").textContent;
       text.textContent = card.querySelector("p").textContent;
 
+      detalleCard.classList.remove("closing");
+      overlay.classList.add("active");
       overlay.style.display = "flex";
       currentIndex = index;
     }
 
-    // Navegación
+    function cerrarOverlay() {
+      detalleCard.classList.add("closing");
+
+      setTimeout(() => {
+        overlay.classList.remove("active");
+        overlay.style.display = "none";
+        detalleCard.classList.remove("closing");
+      }, 350);
+    }
+
     function irPrev() {
       currentIndex = (currentIndex - 1 + cards.length) % cards.length;
       mostrarDetalle(currentIndex);
@@ -56,44 +64,50 @@ document.addEventListener("DOMContentLoaded", () => {
       mostrarDetalle(currentIndex);
     }
 
-    prevBtn.addEventListener("click", (e) => {
+    prevBtn.addEventListener("click", e => {
       e.stopPropagation();
       irPrev();
     });
 
-    nextBtn.addEventListener("click", (e) => {
+    nextBtn.addEventListener("click", e => {
       e.stopPropagation();
       irNext();
     });
 
-    // Cerrar tocando afuera
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) overlay.style.display = "none";
+    overlay.addEventListener("click", e => {
+      if (e.target === overlay) cerrarOverlay();
     });
 
-    // Click en cards
     cards.forEach((card, i) => {
       card.addEventListener("click", () => mostrarDetalle(i));
     });
 
-    // --- 👇 Detección de SWIPE ---
+    // --- SWIPE ---
     let startX = 0;
-    let endX = 0;
+    let startY = 0;
 
-    overlay.addEventListener("touchstart", (e) => {
+    overlay.addEventListener("touchstart", e => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
     });
 
-    overlay.addEventListener("touchend", (e) => {
-      endX = e.changedTouches[0].clientX;
-      const diff = endX - startX;
+    overlay.addEventListener("touchend", e => {
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
 
-      if (Math.abs(diff) > 50) { // mínimo desplazamiento
-        if (diff > 0) {
-          irPrev(); // swipe derecha → anterior
-        } else {
-          irNext(); // swipe izquierda → siguiente
-        }
+      const diffX = endX - startX;
+      const diffY = endY - startY;
+
+      // Swipe vertical dominante → cerrar
+      if (Math.abs(diffY) > Math.abs(diffX) && diffY > 70) {
+        cerrarOverlay();
+        return;
+      }
+
+      // Swipe horizontal → navegación
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) irPrev();
+        else irNext();
       }
     });
   }

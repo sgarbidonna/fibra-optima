@@ -1153,6 +1153,26 @@ height: 50vh;
 
   }
 
+  #overlay-detalle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#overlay-detalle.active {
+  display: flex;
+}
+
+.detalle-card {
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.detalle-card.closing {
+  transform: translateY(120px);
+  opacity: 0;
+}
+
+
   #section-a, #section-b{
     
         overflow-x: hidden;
