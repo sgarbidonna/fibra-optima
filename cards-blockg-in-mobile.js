@@ -40,31 +40,31 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.classList.add("active");
     overlay.style.display = "flex";
     detalle.style.transform = "";
-    detalle.style.opacity = "";
+    // detalle.style.opacity = "";
 
     currentIndex = index;
   }
 
   function cerrarOverlay() {
-    detalle.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+    // detalle.style.transition = "transform 0.35s ease, opacity 0.35s ease";
     detalle.style.transform = "translateY(-120px)";
-    detalle.style.opacity = "0";
+    // detalle.style.opacity = "0";
 
     setTimeout(() => {
       overlay.classList.remove("active");
       overlay.style.display = "none";
       detalle.style.transition = "";
       detalle.style.transform = "";
-      detalle.style.opacity = "";
+      // detalle.style.opacity = "";
     }, 350);
   }
 
   function animarCambio(direccion) {
     const salida = direccion === "left" ? -120 : 120;
 
-    detalle.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+    // detalle.style.transition = "transform 0.3s ease, opacity 0.3s ease";
     detalle.style.transform = `translateX(${salida}px)`;
-    detalle.style.opacity = "0";
+    // detalle.style.opacity = "0";
 
     setTimeout(() => {
       currentIndex =
@@ -80,9 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
       detalle.style.transform = `translateX(${-salida}px)`;
 
       requestAnimationFrame(() => {
-        detalle.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+        // detalle.style.transition = "transform 0.3s ease, opacity 0.3s ease";
         detalle.style.transform = "translateX(0)";
-        detalle.style.opacity = "1";
+        // detalle.style.opacity = "1";
       });
     }, 300);
   }
@@ -146,17 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Math.abs(currentY) > Math.abs(currentX)) {
       // drag vertical
       detalle.style.transform = `translateY(${currentY * 0.7}px)`;
-      detalle.style.opacity = `${1 - Math.min(Math.abs(currentY) / 300, 0.4)}`;
+      // detalle.style.opacity = `${1 - Math.min(Math.abs(currentY) / 300, 0.4)}`;
     } else {
       // drag horizontal
       detalle.style.transform = `translateX(${currentX * 0.7}px)`;
-      detalle.style.opacity = `${1 - Math.min(Math.abs(currentX) / 300, 0.4)}`;
+      // detalle.style.opacity = `${1 - Math.min(Math.abs(currentX) / 300, 0.4)}`;
     }
   });
 
   overlay.addEventListener("touchend", () => {
     dragging = false;
-    detalle.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+    // detalle.style.transition = "transform 0.35s ease, opacity 0.35s ease";
 
     // vertical dominante → cerrar
     if (Math.abs(currentY) > Math.abs(currentX) && Math.abs(currentY) > 80) {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // volver a centro
     else {
       detalle.style.transform = "translate(0,0)";
-      detalle.style.opacity = "1";
+      // detalle.style.opacity = "1";
     }
 
     currentX = currentY = 0;
