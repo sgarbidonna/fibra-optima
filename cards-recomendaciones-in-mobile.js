@@ -138,24 +138,47 @@ function irNext() {
       startY = e.touches[0].clientY;
     });
 
-    overlay.addEventListener("touchend", e => {
-      const endX = e.changedTouches[0].clientX;
-      const endY = e.changedTouches[0].clientY;
+    // overlay.addEventListener("touchend", e => {
+    //   const endX = e.changedTouches[0].clientX;
+    //   const endY = e.changedTouches[0].clientY;
 
-      const diffX = endX - startX;
-      const diffY = endY - startY;
+    //   const diffX = endX - startX;
+    //   const diffY = endY - startY;
 
-      // Swipe vertical dominante → cerrar (UP o DOWN)
-      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
-        cerrarOverlay();
-        return;
-      }
+    //   // Swipe vertical dominante → cerrar (UP o DOWN)
+    //   if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
+    //     cerrarOverlay();
+    //     return;
+    //   }
 
-      // Swipe horizontal → navegación
-      if (Math.abs(diffX) > 50) {
-        if (diffX > 0) irPrev();
-        else irNext();
-      }
-    });
+    //   // Swipe horizontal → navegación
+    //   if (Math.abs(diffX) > 50) {
+    //     if (diffX > 0) irPrev();
+    //     else irNext();
+    //   }
+    // });
+  overlay.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  const endY = e.changedTouches[0].clientY;
+
+  const diffX = endX - startX;
+  const diffY = endY - startY;
+
+  const absX = Math.abs(diffX);
+  const absY = Math.abs(diffY);
+
+  // 👉 Swipe vertical dominante → cerrar (UP o DOWN)
+  if (absY > absX && absY > 70) {
+    cerrarOverlay();
+    return;
+  }
+
+  // 👉 Swipe horizontal dominante → navegación
+  if (absX > absY && absX > 50) {
+    if (diffX > 0) irPrev();
+    else irNext();
+  }
+});
+
   }
 });
