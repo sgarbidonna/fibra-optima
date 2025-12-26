@@ -54,15 +54,62 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 350);
     }
 
-    function irPrev() {
+
+function animarCambio(direccion) {
+  // direccion: "left" o "right"
+  const claseSalida = direccion === "left" ? "slide-left" : "slide-right";
+
+  detalleCard.classList.add(claseSalida);
+
+  setTimeout(() => {
+    // cambiar índice
+    if (direccion === "left") {
+      currentIndex = (currentIndex + 1) % cards.length;
+    } else {
       currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-      mostrarDetalle(currentIndex);
     }
 
-    function irNext() {
-      currentIndex = (currentIndex + 1) % cards.length;
-      mostrarDetalle(currentIndex);
-    }
+    // actualizar contenido
+    const card = cards[currentIndex];
+    const imgDiv = card.querySelector(".card-recomendaciones-img");
+    const bgUrl = getBackgroundUrl(imgDiv);
+
+    img.src = bgUrl || "";
+    title.textContent = card.querySelector("h3").textContent;
+    text.textContent = card.querySelector("p").textContent;
+
+    // reset instantáneo (sin transición)
+    detalleCard.style.transition = "none";
+    detalleCard.style.transform =
+      direccion === "left" ? "translateX(120px)" : "translateX(-120px)";
+    detalleCard.style.opacity = "0";
+
+    requestAnimationFrame(() => {
+      detalleCard.style.transition = "";
+      detalleCard.classList.remove("slide-left", "slide-right");
+      detalleCard.style.transform = "translateX(0)";
+      detalleCard.style.opacity = "1";
+    });
+  }, 300);
+}
+
+function irPrev() {
+  animarCambio("right");
+}
+
+function irNext() {
+  animarCambio("left");
+}
+
+    // function irPrev() {
+    //   currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    //   mostrarDetalle(currentIndex);
+    // }
+
+    // function irNext() {
+    //   currentIndex = (currentIndex + 1) % cards.length;
+    //   mostrarDetalle(currentIndex);
+    // }
 
     prevBtn.addEventListener("click", e => {
       e.stopPropagation();

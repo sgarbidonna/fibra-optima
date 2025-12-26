@@ -1172,6 +1172,19 @@ height: 50vh;
   opacity: 0;
 }
 
+.detalle-card {
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.detalle-card.slide-left {
+  transform: translateX(-120px);
+  opacity: 0;
+}
+
+.detalle-card.slide-right {
+  transform: translateX(120px);
+  opacity: 0;
+}
 
   #section-a, #section-b{
     
