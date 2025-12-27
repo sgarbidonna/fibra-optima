@@ -20,6 +20,16 @@ window.addEventListener('load', () => {
     //   disclaimerOverlay.classList.add('active');
     // }, 200);
 
+    function showDisclaimer() {
+  const disclaimerOverlay = document.getElementById('disclaimer-overlay');
+  if (!disclaimerOverlay) return;
+  disclaimerOverlay.classList.add('active');
+  document.removeEventListener('pointerdown', showDisclaimer);
+}
+
+document.addEventListener('pointerdown', showDisclaimer, { once: true });
+
+
     // -------- MOSTRAR DISCLAIMER (BRAVE-SAFE) --------
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -71,6 +81,3 @@ window.addEventListener('load', () => {
   }, 3000);
 });
 
-
-console.log('DISCLAIMER JS CARGADO');
-alert('DISCLAIMER JS CARGADO');
