@@ -20,12 +20,12 @@ window.addEventListener('load', () => {
     //   disclaimerOverlay.classList.add('active');
     // }, 200);
 
-// -------- MOSTRAR DISCLAIMER (BRAVE-SAFE) --------
-requestAnimationFrame(() => {
-  requestAnimationFrame(() => {
-    disclaimerOverlay.classList.add('active');
-  });
-});
+    // -------- MOSTRAR DISCLAIMER (BRAVE-SAFE) --------
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        disclaimerOverlay.classList.add('active');
+      });
+    });
 
     // -------- CLICK AFUERA --------
     disclaimerOverlay.addEventListener('click', (e) => {
@@ -70,3 +70,7 @@ requestAnimationFrame(() => {
 
   }, 3000);
 });
+
+
+console.log('DISCLAIMER JS CARGADO');
+alert('DISCLAIMER JS CARGADO');
