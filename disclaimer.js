@@ -20,6 +20,12 @@ window.addEventListener('load', () => {
       disclaimerOverlay.classList.add('active');
     }, 200);
 
+    setTimeout(() => {
+      disclaimerBox.setAttribute('tabindex', '-1');
+      disclaimerBox.focus({ preventScroll: true });
+    }, 50);
+
+
     // -------- CLICK AFUERA --------
     disclaimerOverlay.addEventListener('click', (e) => {
       if (!disclaimerBox.contains(e.target)) {
