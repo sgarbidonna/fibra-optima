@@ -1,4 +1,5 @@
 window.addEventListener('load', () => {
+  // Ocultar preloader después de 3 segundos
   setTimeout(() => {
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.classList.add('hide');
@@ -9,31 +10,56 @@ window.addEventListener('load', () => {
 
     if (!disclaimerOverlay || !disclaimerBox) return;
 
-    function abrirDisclaimer() {
-      disclaimerOverlay.classList.add('active');
-    }
-
+    // -------- FUNCION CENTRAL DE CIERRE --------
     function cerrarDisclaimer() {
       disclaimerOverlay.classList.remove('active');
     }
 
-    /* ⬇️ SOLO se abre con interacción del usuario */
-    if (disclaimerCall) {
-      disclaimerCall.addEventListener('click', () => {
-        abrirDisclaimer();
-      });
-    }
+    // -------- MOSTRAR DISCLAIMER --------
+    setTimeout(() => {
+      disclaimerOverlay.classList.add('active');
+    }, 200);
 
-    /* click afuera */
+
+    // -------- CLICK AFUERA --------
     disclaimerOverlay.addEventListener('click', (e) => {
-      if (e.target === disclaimerOverlay) {
+      if (!disclaimerBox.contains(e.target)) {
         cerrarDisclaimer();
       }
     });
 
-    /* ESC */
+    // -------- TECLA ESC --------
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') cerrarDisclaimer();
+    });
+
+    // -------- BOTON / LLAMADA MANUAL --------
+    if (disclaimerCall) {
+      disclaimerCall.addEventListener('click', () => {
+        disclaimerOverlay.classList.toggle('active');
+      });
+    }
+
+    // -------- SWIPE UP / DOWN --------
+    let startY = 0;
+    let startX = 0;
+
+    disclaimerOverlay.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
+    });
+
+    disclaimerOverlay.addEventListener('touchend', (e) => {
+      const endY = e.changedTouches[0].clientY;
+      const endX = e.changedTouches[0].clientX;
+
+      const diffY = endY - startY;
+      const diffX = endX - startX;
+
+      // Swipe vertical dominante → cerrar (UP o DOWN)
+      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
+        cerrarDisclaimer();
+      }
     });
 
   }, 3000);
