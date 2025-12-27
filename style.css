@@ -778,10 +778,11 @@ li::before {
     user-select: none;
     z-index: 9997;
 }
+
 #disclaimer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.65);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -789,39 +790,29 @@ li::before {
 
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
 }
 
-/* overlay visible */
 #disclaimer-overlay.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* CAJA — ÚNICO ELEMENTO ANIMADO */
 #disclaimer-box {
   background: #f8f8f8;
   color: #111;
   max-width: 500px;
   padding: 2rem;
   border-radius: 14px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
-  transform: translateY(60px);
+  transform: translateY(40px);
   opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* entrada */
 #disclaimer-overlay.active #disclaimer-box {
   transform: translateY(0);
   opacity: 1;
-}
-
-/* salida */
-#disclaimer-overlay:not(.active) #disclaimer-box {
-  transform: translateY(60px);
-  opacity: 0;
 }
 
 #disclaimer-box h2 {

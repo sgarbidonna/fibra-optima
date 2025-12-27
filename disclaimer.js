@@ -1,5 +1,4 @@
 window.addEventListener('load', () => {
-  // Ocultar preloader después de 3 segundos
   setTimeout(() => {
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.classList.add('hide');
@@ -10,61 +9,31 @@ window.addEventListener('load', () => {
 
     if (!disclaimerOverlay || !disclaimerBox) return;
 
-    // -------- FUNCION CENTRAL DE CIERRE --------
+    function abrirDisclaimer() {
+      disclaimerOverlay.classList.add('active');
+    }
+
     function cerrarDisclaimer() {
       disclaimerOverlay.classList.remove('active');
     }
 
-    // -------- MOSTRAR DISCLAIMER --------
-    setTimeout(() => {
-      disclaimerOverlay.classList.add('active');
-    }, 200);
-
-    setTimeout(() => {
-      disclaimerBox.setAttribute('tabindex', '-1');
-      disclaimerBox.focus({ preventScroll: true });
-    }, 50);
-
-
-    // -------- CLICK AFUERA --------
-    disclaimerOverlay.addEventListener('click', (e) => {
-      if (!disclaimerBox.contains(e.target)) {
-        cerrarDisclaimer();
-      }
-    });
-
-    // -------- TECLA ESC --------
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') cerrarDisclaimer();
-    });
-
-    // -------- BOTON / LLAMADA MANUAL --------
+    /* ⬇️ SOLO se abre con interacción del usuario */
     if (disclaimerCall) {
       disclaimerCall.addEventListener('click', () => {
-        disclaimerOverlay.classList.toggle('active');
+        abrirDisclaimer();
       });
     }
 
-    // -------- SWIPE UP / DOWN --------
-    let startY = 0;
-    let startX = 0;
-
-    disclaimerOverlay.addEventListener('touchstart', (e) => {
-      startY = e.touches[0].clientY;
-      startX = e.touches[0].clientX;
-    });
-
-    disclaimerOverlay.addEventListener('touchend', (e) => {
-      const endY = e.changedTouches[0].clientY;
-      const endX = e.changedTouches[0].clientX;
-
-      const diffY = endY - startY;
-      const diffX = endX - startX;
-
-      // Swipe vertical dominante → cerrar (UP o DOWN)
-      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
+    /* click afuera */
+    disclaimerOverlay.addEventListener('click', (e) => {
+      if (e.target === disclaimerOverlay) {
         cerrarDisclaimer();
       }
+    });
+
+    /* ESC */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') cerrarDisclaimer();
     });
 
   }, 3000);
