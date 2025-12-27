@@ -15,17 +15,11 @@ window.addEventListener('load', () => {
       disclaimerOverlay.classList.remove('active');
     }
 
-    // // -------- MOSTRAR DISCLAIMER --------
-    // setTimeout(() => {
-    //   disclaimerOverlay.classList.add('active');
-    // }, 200);
+    // -------- MOSTRAR DISCLAIMER --------
+    setTimeout(() => {
+      disclaimerOverlay.classList.add('active');
+    }, 200);
 
-    function showDisclaimer() {
-  const disclaimerOverlay = document.getElementById('disclaimer-overlay');
-  if (!disclaimerOverlay) return;
-  disclaimerOverlay.classList.add('active');
-  document.removeEventListener('pointerdown', showDisclaimer);
-}
 
 document.addEventListener('pointerdown', showDisclaimer, { once: true });
 
