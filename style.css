@@ -822,6 +822,38 @@ li::before {
   margin: 0.6rem 0;
 }
 
+/* ===== DISCLAIMER ANIMADO ===== */
+
+#disclaimer-box {
+  background: #f8f8f8;
+  color: #111;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  font-family: 'Cascadia Code', monospace;
+  line-height: 1.4;
+  text-align: left;
+
+  /* 👇 estado inicial */
+  transform: translateY(80px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* cuando el overlay está activo */
+#disclaimer-overlay.active #disclaimer-box {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* cierre animado (swipe / click afuera / ESC) */
+#disclaimer-overlay:not(.active) #disclaimer-box {
+  transform: translateY(80px);
+  opacity: 0;
+}
+
+
 
 .blockg-content{
       padding-top: 15px;
