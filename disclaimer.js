@@ -1,5 +1,8 @@
+
+
 window.addEventListener('load', () => {
   // Ocultar preloader después de 3 segundos
+  
   setTimeout(() => {
     const preloader = document.getElementById('preloader');
     if (preloader) preloader.classList.add('hide');
