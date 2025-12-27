@@ -10,55 +10,97 @@ window.addEventListener('load', () => {
 
     if (!disclaimerOverlay || !disclaimerBox) return;
 
-    // -------- FUNCION CENTRAL DE CIERRE --------
-    function cerrarDisclaimer() {
-      disclaimerOverlay.classList.remove('active');
+    let isOpen = false;
+    let startY = 0;
+    let currentY = 0;
+    let dragging = false;
+
+    // -------- UTILIDADES --------
+    function lockBody() {
+      document.body.style.overflow = 'hidden';
     }
 
-    // -------- MOSTRAR DISCLAIMER --------
-    setTimeout(() => {
+    function unlockBody() {
+      document.body.style.overflow = '';
+    }
+
+    function abrirDisclaimer() {
       disclaimerOverlay.classList.add('active');
+      lockBody();
+      isOpen = true;
+      disclaimerBox.setAttribute('tabindex', '-1');
+      disclaimerBox.focus();
+    }
+
+    function cerrarDisclaimer() {
+      disclaimerOverlay.classList.remove('active');
+      unlockBody();
+      isOpen = false;
+
+      // reset visual por si hubo drag
+      disclaimerBox.style.transform = '';
+      disclaimerBox.style.opacity = '';
+    }
+
+    // -------- MOSTRAR AUTOMÁTICO --------
+    setTimeout(() => {
+      abrirDisclaimer();
     }, 200);
 
-    // -------- CLICK AFUERA --------
-    disclaimerOverlay.addEventListener('click', (e) => {
-      if (!disclaimerBox.contains(e.target)) {
-        cerrarDisclaimer();
-      }
-    });
-
-    // -------- TECLA ESC --------
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') cerrarDisclaimer();
-    });
-
-    // -------- BOTON / LLAMADA MANUAL --------
+    // -------- BOTÓN / LLAMADA --------
     if (disclaimerCall) {
-      disclaimerCall.addEventListener('click', () => {
-        disclaimerOverlay.classList.toggle('active');
+      disclaimerCall.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen ? cerrarDisclaimer() : abrirDisclaimer();
       });
     }
 
-    // -------- SWIPE UP / DOWN --------
-    let startY = 0;
-    let startX = 0;
-
-    disclaimerOverlay.addEventListener('touchstart', (e) => {
-      startY = e.touches[0].clientY;
-      startX = e.touches[0].clientX;
+    // -------- CLICK AFUERA --------
+    disclaimerOverlay.addEventListener('click', () => {
+      cerrarDisclaimer();
     });
 
-    disclaimerOverlay.addEventListener('touchend', (e) => {
-      const endY = e.changedTouches[0].clientY;
-      const endX = e.changedTouches[0].clientX;
+    // -------- EVITAR CIERRE AL CLICKEAR DENTRO --------
+    disclaimerBox.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
 
-      const diffY = endY - startY;
-      const diffX = endX - startX;
+    // -------- ESC --------
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) cerrarDisclaimer();
+    });
 
-      // Swipe vertical dominante → cerrar (UP o DOWN)
-      if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 70) {
+    // -------- SWIPE REAL (DRAG) --------
+    disclaimerOverlay.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      dragging = true;
+      disclaimerBox.style.transition = 'none';
+    });
+
+    disclaimerOverlay.addEventListener('touchmove', (e) => {
+      if (!dragging) return;
+
+      currentY = e.touches[0].clientY - startY;
+
+      // solo permitir arrastre vertical
+      disclaimerBox.style.transform = `translateY(${currentY}px)`;
+      disclaimerBox.style.opacity = `${1 - Math.abs(currentY) / 300}`;
+    });
+
+    disclaimerOverlay.addEventListener('touchend', () => {
+      dragging = false;
+      disclaimerBox.style.transition = '';
+
+      // umbral de cierre
+      if (Math.abs(currentY) > 120) {
         cerrarDisclaimer();
+      } else {
+        // volver a estado original
+        disclaimerBox.style.transform = 'translateY(0)';
+        disclaimerBox.style.opacity = '1';
       }
+
+      currentY = 0;
     });
 
   }, 3000);
