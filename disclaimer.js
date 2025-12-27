@@ -15,11 +15,17 @@ window.addEventListener('load', () => {
       disclaimerOverlay.classList.remove('active');
     }
 
-    // -------- MOSTRAR DISCLAIMER --------
-    setTimeout(() => {
-      disclaimerOverlay.classList.add('active');
-    }, 200);
+    // // -------- MOSTRAR DISCLAIMER --------
+    // setTimeout(() => {
+    //   disclaimerOverlay.classList.add('active');
+    // }, 200);
 
+// -------- MOSTRAR DISCLAIMER (BRAVE-SAFE) --------
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    disclaimerOverlay.classList.add('active');
+  });
+});
 
     // -------- CLICK AFUERA --------
     disclaimerOverlay.addEventListener('click', (e) => {

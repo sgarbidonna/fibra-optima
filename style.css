@@ -795,6 +795,10 @@ li::before {
 
   inset: 0;
   isolation: isolate;
+
+    transform: translateZ(0);
+  will-change: opacity;
+  z-index: 10000;
 }
 
 #disclaimer-overlay.active {
