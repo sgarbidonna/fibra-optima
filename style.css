@@ -787,7 +787,6 @@ li::before {
   align-items: center;
   justify-content: center;
   z-index: 9996;
-  backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
@@ -842,7 +841,13 @@ li::before {
 }
 
 /* cuando el overlay está activo */
-#disclaimer-overlay.active #disclaimer-box {
+#disclaimer-overlay.active{
+  transform: translateY(0);
+  opacity: 0.5;
+
+} 
+
+#disclaimer-box {
   transform: translateY(0);
   opacity: 1;
 }
@@ -853,18 +858,12 @@ li::before {
   opacity: 0;
 }
 
-#disclaimer-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9996;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
+@supports (-webkit-backdrop-filter: none) {
+  body.brave #disclaimer-overlay {
+    backdrop-filter: none;
+  }
 }
+
 
 #disclaimer-overlay::before {
   content: "";
