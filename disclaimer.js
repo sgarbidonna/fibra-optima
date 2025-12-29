@@ -74,6 +74,8 @@
 
 //   }, 3000);
 // });
+const disclaimerCall = document.querySelector('.disclaimer-call');
+
 
 (() => {
   const PRELOADER_DELAY = 2000; // ms
@@ -139,4 +141,12 @@
       addListeners();
     }, PRELOADER_DELAY);
   });
+
+  if (disclaimerCall) {
+  disclaimerCall.addEventListener('click', () => {
+    showDisclaimer();
+    addListeners();
+  });
+}
+
 })();
