@@ -769,74 +769,64 @@ li::before {
   transition: opacity 0.4s ease;
 }
 
-.disclaimer-call {
-    position: absolute;
-    padding: 15px 0px 15px 4px;
-    color: red;
-    font-weight: 900;
-    font-size: 22px;
-    cursor: cell;
-    user-select: none;
-    z-index: 9997;
+.info-call {
+  position: absolute;
+  padding: 15px 0px 15px 4px;
+  color: red;
+  font-weight: 900;
+  font-size: 22px;
+  cursor: cell;
+  user-select: none;
+  z-index: 9997;
 }
 
-#disclaimer-overlay {
+#info-layer {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.65);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9996;
-
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-
-  inset: 0;
-  isolation: isolate;
-
-    transform: translateZ(0);
-  will-change: opacity;
-  z-index: 10000;
+  transform: scale(0);
+  transition: transform 1s ease opacity 0.3s ease;
+  z-index: 9999;
 }
 
-#disclaimer-overlay.active {
+#info-layer.active {
+  transform: scale(1);
   opacity: 1;
-  pointer-events: auto;
-  display: flex;
 }
 
-#preloader.hide {
-  opacity: 0;
-  pointer-events: none;
-}
 
-#disclaimer-box {
+
+#info-panel {
   background: #f8f8f8;
   color: #111;
   max-width: 500px;
+  width: calc(100% - 40px);
   padding: 2rem;
+  transform: translateY(20px) scale(0.96);
+  opacity: 0;
+  
   border-radius: 14px;
 
-  transform: translateY(40px);
-  opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-#disclaimer-overlay.active #disclaimer-box {
-  transform: translateY(0);
+#info-layer.active #info-panel {
+  transform: translateY(0) scale(1);
   opacity: 1;
 }
 
-#disclaimer-box h2 {
+#info-panel h2 {
   font-family: 'Special Elite', monospace;
   font-size: 1.2rem;
   text-align: center;
   margin-bottom: 1rem;
 }
 
-#disclaimer-box p {
+#info-panel p {
   font-size: 0.9rem;
   margin: 0.6rem 0;
 }
@@ -852,10 +842,10 @@ li::before {
 /*TABLET*/
 @media (min-width: 821px) and (max-width: 1200px) {
 
-  .disclaimer-call{
+  .info-call{
     display: none;
   }
-  #disclaimer-box{
+  #info-panel{
     max-width: 80vw;
   }
   .sidebar{
@@ -1016,7 +1006,7 @@ height: 50vh;
 
 /*MOBILE*/
 @media (max-width: 820px) {
-  .disclaimer-call{
+  .info-call{
     display: none;
   }
   
@@ -1353,34 +1343,32 @@ input {
 }
 
 
-#disclaimer-box{
+#info-panel{
     max-width: 88vw;
   }
   
-  #disclaimer-box p {
+  #info-panel p {
     font-size: 0.7rem;
     margin: 0.5rem 0;
   text-align: justify;
 
   }
 
-  #disclaimer-overlay {
+  #info-layer {
   opacity: 0;
-  pointer-events: none;
   transition: opacity .3s ease;
 }
 
-#disclaimer-overlay.active {
+#info-layer.active {
   opacity: 1;
-  pointer-events: auto;
 }
 
-#disclaimer-box {
+#info-panel {
   transform: translateY(40px);
   transition: transform .35s ease;
 }
 
-#disclaimer-overlay.active #disclaimer-box {
+#info-layer.active #info-panel {
   transform: translateY(0);
 }
 
