@@ -259,6 +259,10 @@ width: 0px;}
     text-align: justify;
   }
 
+  .card-blockg{
+  border-bottom: 1px solid #000;
+    padding: 1rem;
+    }
   .fecha-al-pie{
     padding-top: 15px;
     font-size: 0.7em;
