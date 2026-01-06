@@ -1,0 +1,12 @@
+--------------ESQUELETO RECOMENDACIONES
+
+data-tags
+discogs link
+NOMBRE BANDA - Nombre Disco
+año - distribuidora
+texto recomendacion
+link youtube
+link imagen discogs
+
+
+--------------ESQUELETO BLOCKG
