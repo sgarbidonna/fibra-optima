@@ -8,5 +8,27 @@ texto recomendacion
 link youtube
 link imagen discogs
 
+    data-tag="50s"
+    data-tag="60s"
+    data-tag="70s"
+    data-tag="80s"
+    data-tag="90s"
+    data-tag="00s"
+    data-tag="10s"
+    data-tag="20s"
+    data-tag="ambiental"
+    data-tag="argentina"
+    data-tag="cantautoreo"
+    data-tag="de-pista"
+    data-tag="electronico"
+    data-tag="experimental"
+    data-tag="folk"
+    data-tag="indierock"
+    data-tag="internacionales"
+    data-tag="jazzi"
+    data-tag="metal"
+    data-tag="punki"
+    data-tag="synths"
+
 
 --------------ESQUELETO BLOCKG
