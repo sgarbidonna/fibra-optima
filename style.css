@@ -541,10 +541,13 @@ text-align: justify;
 
 .social-icons {
   display: flex;
-  justify-content: center; /* centra horizontalmente */
+  position: fixed;
+  justify-content: right; /* centra horizontalmente */
   align-items: center;     /* alinea verticalmente */
   gap: 1.2rem;             /* espacio entre íconos */
   padding: 1rem 0;
+  bottom: 1rem;
+
 }
 
 .social-icons a img {
@@ -558,6 +561,13 @@ text-align: justify;
   transform: scale(1.1);
   opacity: 0.8;
     cursor: cell;
+}
+
+.dev-info p{
+  color: #333;
+  position: fixed;
+  bottom: 1rem;
+  justify-self: right;
 }
 
 
@@ -836,7 +846,6 @@ li::before {
       padding-top: 15px;
 
 }
-
 
 
 /*TABLET*/
