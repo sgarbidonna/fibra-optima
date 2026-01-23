@@ -717,10 +717,10 @@ audio{
       font-size: 1rem;
       transition: all 0.5s ease;
   }
-
+/* 
   #section-ezpezialez-title{
-    /* background: rgba(93, 107, 84, 1); */
-  }
+    background: rgba(93, 107, 84, 1); 
+  } */
 
   .card-articulo{
     height: auto;
