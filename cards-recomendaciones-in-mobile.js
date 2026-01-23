@@ -182,10 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!window.matchMedia("(max-width: 1200px)").matches) return;
 
   const cards = document.querySelectorAll(".card-recomendaciones");
-  if (!cards.length) return;
-
   let currentIndex = 0;
-  let lock = false;
+  let overlayOpen = false;
 
   /* ======================
      OVERLAY
@@ -195,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.id = "overlay-detalle";
   overlay.innerHTML = `
     <div class="detalle-card">
-      <button class="cerrar-overlay" aria-label="Cerrar">✕</button>
+      <button class="close-detalle" aria-label="Cerrar">✕</button>
       <button id="flecha-prev" class="flecha">←</button>
       <button id="flecha-next" class="flecha">→</button>
       <img src="" alt="">
@@ -211,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const text = overlay.querySelector("p");
   const prevBtn = overlay.querySelector("#flecha-prev");
   const nextBtn = overlay.querySelector("#flecha-next");
-  const closeBtn = overlay.querySelector(".cerrar-overlay");
+  const closeBtn = overlay.querySelector(".close-detalle");
 
   /* ======================
      HELPERS
@@ -223,8 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mostrarDetalle(index) {
-    if (lock) return;
-
     const card = cards[index];
     const imgDiv = card.querySelector(".card-recomendaciones-img");
 
@@ -232,33 +228,20 @@ document.addEventListener("DOMContentLoaded", () => {
     title.textContent = card.querySelector("h3").textContent;
     text.textContent = card.querySelector("p").textContent;
 
-    overlay.style.display = "flex";
     overlay.classList.add("active");
-    overlay.style.pointerEvents = "auto";
-
+    overlay.style.display = "flex";
+    overlayOpen = true;
     currentIndex = index;
   }
 
   function cerrarOverlay() {
-    if (lock) return;
-    lock = true;
-
+    overlayOpen = false;
     overlay.classList.remove("active");
-
-    /* 👇 MUY IMPORTANTE PARA iOS */
-    setTimeout(() => {
-      overlay.style.pointerEvents = "none";
-      overlay.style.display = "none";
-    }, 120);
-
-    /* 🔒 lock anti ghost click */
-    setTimeout(() => {
-      lock = false;
-    }, 350);
+    overlay.style.display = "none";
   }
 
-  function cambiarCard(dir) {
-    const salida = dir === "left" ? -120 : 120;
+  function cambiarCard(direccion) {
+    const salida = direccion === "left" ? -120 : 120;
 
     detalleCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
     detalleCard.style.transform = `translateX(${salida}px)`;
@@ -266,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       currentIndex =
-        dir === "left"
+        direccion === "left"
           ? (currentIndex + 1) % cards.length
           : (currentIndex - 1 + cards.length) % cards.length;
 
@@ -279,11 +262,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       detalleCard.style.transition = "none";
       detalleCard.style.transform =
-        dir === "left" ? "translateX(120px)" : "translateX(-120px)";
+        direccion === "left"
+          ? "translateX(120px)"
+          : "translateX(-120px)";
       detalleCard.style.opacity = "0";
 
       requestAnimationFrame(() => {
-        detalleCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+        detalleCard.style.transition =
+          "transform 0.3s ease, opacity 0.3s ease";
         detalleCard.style.transform = "translateX(0)";
         detalleCard.style.opacity = "1";
       });
@@ -304,58 +290,97 @@ document.addEventListener("DOMContentLoaded", () => {
     cambiarCard("left");
   });
 
-  closeBtn.addEventListener("touchstart", e => {
-    e.preventDefault();
+  closeBtn.addEventListener("click", e => {
     e.stopPropagation();
     cerrarOverlay();
   });
 
   /* ======================
-     CIERRE AFUERA — iOS SAFE
-  ====================== */
-
-  overlay.addEventListener("touchstart", e => {
-    if (!detalleCard.contains(e.target)) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      cerrarOverlay();
-    }
-  });
-
-  /* ======================
-     OPEN CARDS
+     ABRIR CARD
   ====================== */
 
   cards.forEach((card, i) => {
-    card.addEventListener("touchstart", e => {
-      if (lock) return;
-      e.preventDefault(); // 👈 clave iOS
+    card.addEventListener("click", e => {
+      if (overlayOpen) return;
+      e.stopPropagation();
       mostrarDetalle(i);
     });
   });
 
   /* ======================
-     SWIPE HORIZONTAL ONLY
+     CERRAR AFUERA (CLICK + TOUCH)
+  ====================== */
+
+  overlay.addEventListener("click", e => {
+    if (e.target === overlay) cerrarOverlay();
+  });
+
+  overlay.addEventListener(
+    "touchstart",
+    e => {
+      if (e.target === overlay) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        cerrarOverlay();
+      }
+    },
+    { passive: false }
+  );
+
+  /* ======================
+     SWIPE HORIZONTAL REAL (SIN ROMPER SCROLL)
   ====================== */
 
   let startX = 0;
+  let startY = 0;
   let currentX = 0;
+  let isHorizontal = null;
   let dragging = false;
 
-  detalleCard.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-    dragging = true;
-    detalleCard.style.transition = "none";
-  });
+  detalleCard.addEventListener(
+    "touchstart",
+    e => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      currentX = 0;
+      isHorizontal = null;
+      dragging = true;
+      detalleCard.style.transition = "none";
+    },
+    { passive: true }
+  );
 
-  detalleCard.addEventListener("touchmove", e => {
-    if (!dragging) return;
-    currentX = e.touches[0].clientX - startX;
-    detalleCard.style.transform = `translateX(${currentX}px)`;
-  });
+  detalleCard.addEventListener(
+    "touchmove",
+    e => {
+      if (!dragging) return;
+
+      const t = e.touches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      if (isHorizontal === null) {
+        isHorizontal = Math.abs(dx) > Math.abs(dy);
+      }
+
+      if (!isHorizontal) return;
+
+      e.preventDefault();
+      currentX = dx;
+      detalleCard.style.transform = `translateX(${currentX}px)`;
+    },
+    { passive: false }
+  );
 
   detalleCard.addEventListener("touchend", () => {
+    if (!dragging) return;
     dragging = false;
+
+    if (!isHorizontal) {
+      detalleCard.style.transform = "";
+      return;
+    }
 
     const absX = Math.abs(currentX);
     detalleCard.style.transition = "transform 0.3s ease";
@@ -369,3 +394,4 @@ document.addEventListener("DOMContentLoaded", () => {
     currentX = 0;
   });
 });
+
