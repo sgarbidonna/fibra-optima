@@ -155,7 +155,7 @@ if (isWeb) {
 
 } else if (isTablet) {
 
-  console.log('tablet', ' - sections-behavior.js');
+  // console.log('tablet', ' - sections-behavior.js');
 
   const headerA = document.getElementById('section-a-title');
   const headerB = document.getElementById('section-b-title');
@@ -170,7 +170,7 @@ if (isWeb) {
 } else {
 /* AL SER UN IF NEGATIVO SI ENTRO ACA ESTOY EN MOBIL  */ 
 
-  console.log('mobile', ' -  sections-behavior.js');
+  // console.log('mobile', ' -  sections-behavior.js');
 
   // // const sections = document.querySelectorAll(".section");
   // const headers = document.querySelectorAll(".section-header");
