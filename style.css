@@ -267,6 +267,8 @@ width: 0px;}
     max-width: 100%;
     font-size: 0.8rem;
     text-align: justify;
+    
+    line-height: 1.6;
   }
 
   .card-blockg{
