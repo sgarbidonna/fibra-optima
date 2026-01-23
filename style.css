@@ -1200,7 +1200,11 @@ height: 50vh;
   }
 
 
-
+.card-recomendaciones{
+    flex-direction: column-reverse;
+    gap: 1em;
+ 
+}
   .cards-recomendaciones-content{
     display: flex;
     flex-direction: column;
