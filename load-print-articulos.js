@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Evitar duplicados: buscamos por data-id en las cards ya inyectadas
       const yaExiste = sectionArticulos.querySelector(`.card-articulo[data-id="${sanitizedId}"]`);
       if (yaExiste) {
-        console.log(`[load-print-articulos] Saltando duplicado: ${sanitizedId}`);
+        // console.log(`[load-print-articulos] Saltando duplicado: ${sanitizedId}`);
         return;
       }
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       sectionArticulos.appendChild(card);
     });
 
-    console.log('[load-print-articulos] Inyección terminada');
+    // console.log('[load-print-articulos] Inyección terminada');
 
     // ---------- Manejo del hash (si abrimos con #id) ----------
     // Esperamos un tick para asegurarnos de que el DOM se haya renderizado

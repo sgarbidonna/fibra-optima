@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const doc = parser.parseFromString(html, 'text/html');
     
     const articulos = doc.querySelectorAll('.ezpezialez-articulo');
-    console.log('Artículos extraídos:', articulos.length);
+    // console.log('Artículos extraídos:', articulos.length);
     
     // Insertar cada artículo en section-articulos con clase .card-articulo
     articulos.forEach((art) => {

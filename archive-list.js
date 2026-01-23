@@ -105,7 +105,7 @@
 
 if (!isMobile) {
 
-  console.log('archive-list.js only on web');
+  // console.log('archive-list.js only on web');
   
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('section-articulos');
@@ -122,7 +122,7 @@ if (!isMobile) {
 
       if (articles.length > 0) {
         obs.disconnect(); 
-        console.log(`[archive-list.js] Detectados ${articles.length} artículos — construyendo lista de archivo...`);
+        // console.log(`[archive-list.js] Detectados ${articles.length} artículos — construyendo lista de archivo...`);
         buildArchiveList(articles, archiveList);
       }
     });
