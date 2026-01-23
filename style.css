@@ -196,22 +196,20 @@ width: 0px;}
       border-right: none;
     }
 
-
-    
- #section-a{    
+   
+ #section-a {    
 	flex: 2.5;
 }
 
 
-#section-b{
-
+#section-b {
     flex: 0.5;
 }
 
-#section-c{
-
+#section-ezpezialez {
     flex: 1.5;
 }
+
 #section-b {
   /* flex: none; */
   width: 30vw;
@@ -1162,7 +1160,7 @@ height: 50vh;
 
   .section {
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     padding: 10px;
     max-width: 100vw;
     transition: flex 1s ease, opacity 0.4s ease;
