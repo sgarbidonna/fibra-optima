@@ -185,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!cards.length) return;
 
   let currentIndex = 0;
+  let isClosing = false; // 🔒 lock anti doble click
 
   /* ======================
      OVERLAY
@@ -194,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.id = "overlay-detalle";
   overlay.innerHTML = `
     <div class="detalle-card">
+      <button class="cerrar-overlay" aria-label="Cerrar">✕</button>
       <button id="flecha-prev" class="flecha">←</button>
       <button id="flecha-next" class="flecha">→</button>
       <img src="" alt="">
@@ -209,6 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const text = overlay.querySelector("p");
   const prevBtn = overlay.querySelector("#flecha-prev");
   const nextBtn = overlay.querySelector("#flecha-next");
+  const closeBtn = overlay.querySelector(".cerrar-overlay");
 
   /* ======================
      HELPERS
@@ -220,6 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mostrarDetalle(index) {
+    if (isClosing) return;
+
     const card = cards[index];
     const imgDiv = card.querySelector(".card-recomendaciones-img");
 
@@ -237,12 +242,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function cerrarOverlay() {
+    if (isClosing) return;
+    isClosing = true;
+
     overlay.classList.remove("active");
     overlay.style.display = "none";
 
-    detalleCard.style.transition = "";
-    detalleCard.style.transform = "";
-    detalleCard.style.opacity = "";
+    // 🔒 bloqueo breve para evitar click-through
+    setTimeout(() => {
+      isClosing = false;
+    }, 300);
   }
 
   function cambiarCard(direccion) {
@@ -292,18 +301,19 @@ document.addEventListener("DOMContentLoaded", () => {
     cambiarCard("left");
   });
 
+  closeBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    cerrarOverlay();
+  });
+
   /* ======================
      CLICK / TOUCH AFUERA
   ====================== */
 
-  overlay.addEventListener("click", e => {
+  overlay.addEventListener("pointerdown", e => {
     if (!detalleCard.contains(e.target)) {
-      cerrarOverlay();
-    }
-  });
-
-  overlay.addEventListener("touchstart", e => {
-    if (!detalleCard.contains(e.target)) {
+      e.preventDefault();
+      e.stopPropagation();
       cerrarOverlay();
     }
   });
@@ -313,7 +323,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ====================== */
 
   cards.forEach((card, i) => {
-    card.addEventListener("click", () => mostrarDetalle(i));
+    card.addEventListener("click", e => {
+      if (isClosing) return;
+      mostrarDetalle(i);
+    });
   });
 
   /* ======================
@@ -354,5 +367,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     currentX = 0;
   });
-
 });
+
