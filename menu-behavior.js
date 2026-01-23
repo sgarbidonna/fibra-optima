@@ -67,7 +67,7 @@ const xqsomosPanel = document.getElementById('xqsomos-panel');
 // const setsPanel = document.getElementById('sets-panel');
 
 
-console.log('estoy en menu-behaviour');
+// console.log('estoy en menu-behaviour');
 
 menuTags.addEventListener('click', () => {
   if (!tags) return;
@@ -75,7 +75,7 @@ menuTags.addEventListener('click', () => {
 });
 
 if (isWeb) {
-  console.log('web - header behavior');
+  // console.log('web - header behavior');
 
   /***  XQSOMOS PANEL ***/
   menuXqsomos.addEventListener('mouseenter', () => {

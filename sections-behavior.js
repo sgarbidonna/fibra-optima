@@ -104,8 +104,8 @@ if (isWeb) {
     activeSection = sectionId;
   }
 
-  document.getElementById('menu-recomendaciones').addEventListener('click', () => highlightSection('a'));
-  document.getElementById('menu-blockg').addEventListener('click', () => highlightSection('b'));
+  // document.getElementById('menu-recomendaciones').addEventListener('click', () => highlightSection('a'));
+  // document.getElementById('menu-blockg').addEventListener('click', () => highlightSection('b'));
   document.getElementById('section-a-title').addEventListener('click', () => highlightSection('a'));
   document.getElementById('section-b-title').addEventListener('click', () => highlightSection('b'));
   document.getElementById('logo').addEventListener('click', resetSections);
