@@ -1493,6 +1493,7 @@ input {
   border: none;
   cursor: cell;
   z-index: 10;
+  color: black;
 }
 
 

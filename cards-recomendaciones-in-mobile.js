@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!cards.length) return;
 
   let currentIndex = 0;
-  let isClosing = false; // 🔒 lock anti doble click
+  let lock = false;
 
   /* ======================
      OVERLAY
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mostrarDetalle(index) {
-    if (isClosing) return;
+    if (lock) return;
 
     const card = cards[index];
     const imgDiv = card.querySelector(".card-recomendaciones-img");
@@ -232,30 +232,33 @@ document.addEventListener("DOMContentLoaded", () => {
     title.textContent = card.querySelector("h3").textContent;
     text.textContent = card.querySelector("p").textContent;
 
-    overlay.classList.add("active");
     overlay.style.display = "flex";
-
-    detalleCard.style.transform = "";
-    detalleCard.style.opacity = "";
+    overlay.classList.add("active");
+    overlay.style.pointerEvents = "auto";
 
     currentIndex = index;
   }
 
   function cerrarOverlay() {
-    if (isClosing) return;
-    isClosing = true;
+    if (lock) return;
+    lock = true;
 
     overlay.classList.remove("active");
-    overlay.style.display = "none";
 
-    // 🔒 bloqueo breve para evitar click-through
+    /* 👇 MUY IMPORTANTE PARA iOS */
     setTimeout(() => {
-      isClosing = false;
-    }, 300);
+      overlay.style.pointerEvents = "none";
+      overlay.style.display = "none";
+    }, 120);
+
+    /* 🔒 lock anti ghost click */
+    setTimeout(() => {
+      lock = false;
+    }, 350);
   }
 
-  function cambiarCard(direccion) {
-    const salida = direccion === "left" ? -120 : 120;
+  function cambiarCard(dir) {
+    const salida = dir === "left" ? -120 : 120;
 
     detalleCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
     detalleCard.style.transform = `translateX(${salida}px)`;
@@ -263,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       currentIndex =
-        direccion === "left"
+        dir === "left"
           ? (currentIndex + 1) % cards.length
           : (currentIndex - 1 + cards.length) % cards.length;
 
@@ -276,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       detalleCard.style.transition = "none";
       detalleCard.style.transform =
-        direccion === "left" ? "translateX(120px)" : "translateX(-120px)";
+        dir === "left" ? "translateX(120px)" : "translateX(-120px)";
       detalleCard.style.opacity = "0";
 
       requestAnimationFrame(() => {
@@ -301,30 +304,32 @@ document.addEventListener("DOMContentLoaded", () => {
     cambiarCard("left");
   });
 
-  closeBtn.addEventListener("click", e => {
+  closeBtn.addEventListener("touchstart", e => {
+    e.preventDefault();
     e.stopPropagation();
     cerrarOverlay();
   });
 
   /* ======================
-     CLICK / TOUCH AFUERA
+     CIERRE AFUERA — iOS SAFE
   ====================== */
 
-  overlay.addEventListener("pointerdown", e => {
+  overlay.addEventListener("touchstart", e => {
     if (!detalleCard.contains(e.target)) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       cerrarOverlay();
     }
   });
 
   /* ======================
-     OPEN
+     OPEN CARDS
   ====================== */
 
   cards.forEach((card, i) => {
-    card.addEventListener("click", e => {
-      if (isClosing) return;
+    card.addEventListener("touchstart", e => {
+      if (lock) return;
+      e.preventDefault(); // 👈 clave iOS
       mostrarDetalle(i);
     });
   });
@@ -337,23 +342,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentX = 0;
   let dragging = false;
 
-  overlay.addEventListener("touchstart", e => {
-    if (!detalleCard.contains(e.target)) return;
-
+  detalleCard.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
     dragging = true;
     detalleCard.style.transition = "none";
   });
 
-  overlay.addEventListener("touchmove", e => {
+  detalleCard.addEventListener("touchmove", e => {
     if (!dragging) return;
-
     currentX = e.touches[0].clientX - startX;
     detalleCard.style.transform = `translateX(${currentX}px)`;
   });
 
-  overlay.addEventListener("touchend", () => {
-    if (!dragging) return;
+  detalleCard.addEventListener("touchend", () => {
     dragging = false;
 
     const absX = Math.abs(currentX);
@@ -368,4 +369,3 @@ document.addEventListener("DOMContentLoaded", () => {
     currentX = 0;
   });
 });
-
