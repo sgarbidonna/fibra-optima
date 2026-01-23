@@ -63,23 +63,20 @@ const tags = document.getElementById('tags');
 const menuXqsomos = document.getElementById('menu-xqsomos');
 const xqsomosPanel = document.getElementById('xqsomos-panel');
 
-// const menuSets = document.getElementById('menu-sets');
-// const setsPanel = document.getElementById('sets-panel');
+const menuAportes = document.getElementById('menu-aportes');
+const aportesPanel = document.getElementById('aportes-panel');
 
 
 // console.log('estoy en menu-behaviour');
-
 menuTags.addEventListener('click', () => {
   if (!tags) return;
   tags.classList.toggle('visible');
 });
 
 if (isWeb) {
-  // console.log('web - header behavior');
 
-  /***  XQSOMOS PANEL ***/
+  /*************** XQSOMOS PANEL ***************/
   menuXqsomos.addEventListener('mouseenter', () => {
-    console.log('entro hover xqsomos');
     xqsomosPanel.style.opacity = '1';
   });
 
@@ -91,51 +88,69 @@ if (isWeb) {
     }, 100);
   });
 
-  xqsomosPanel.addEventListener('mouseleave', () => {
-    xqsomosPanel.style.opacity = '0';
-  });
-
   xqsomosPanel.addEventListener('mouseenter', () => {
     xqsomosPanel.style.opacity = '1';
   });
 
-  /***  SETS PANEL ***/
-  // menuSets.addEventListener('mouseenter', () => {
-  //   setsPanel.style.opacity = '1';
-  // });
+  xqsomosPanel.addEventListener('mouseleave', () => {
+    xqsomosPanel.style.opacity = '0';
+  });
 
-  // menuSets.addEventListener('mouseleave', () => {
-  //   setTimeout(() => {
-  //     if (!setsPanel.matches(':hover')) {
-  //       setsPanel.style.opacity = '0';
-  //     }
-  //   }, 100);
-  // });
+
+  /*************** APORTES PANEL ***************/
+  menuAportes.addEventListener('mouseenter', () => {
+    aportesPanel.style.opacity = '1';
+  });
+
+  menuAportes.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      if (!aportesPanel.matches(':hover')) {
+        aportesPanel.style.opacity = '0';
+      }
+    }, 100);
+  });
+
+  aportesPanel.addEventListener('mouseenter', () => {
+    aportesPanel.style.opacity = '1';
+  });
+
+  aportesPanel.addEventListener('mouseleave', () => {
+    aportesPanel.style.opacity = '0';
+  });
 
 }
+
+/* ================= TABLET / TOUCH ================= */
 
 else if (isTablet) {
   console.log('tablet - header behavior');
 
-  /***  XQSOMOS PANEL ***/
+  /*************** XQSOMOS PANEL ***************/
   menuXqsomos.addEventListener('touchstart', (e) => {
     e.stopPropagation();
     xqsomosPanel.classList.toggle('active');
   });
 
-  /***  SETS PANEL ***/
-  // menuSets.addEventListener('touchstart', (e) => {
-  //   e.stopPropagation();
-  //   setsPanel.classList.toggle('active');
-  // });
+  /*************** APORTES PANEL ***************/
+  menuAportes.addEventListener('touchstart', (e) => {
+    e.stopPropagation();
+    aportesPanel.classList.toggle('active');
+  });
 
   // Cerrar paneles si tocás fuera
   document.addEventListener('touchstart', (e) => {
-    if (!menuXqsomos.contains(e.target) && !xqsomosPanel.contains(e.target)) {
+    if (
+      !menuXqsomos.contains(e.target) &&
+      !xqsomosPanel.contains(e.target)
+    ) {
       xqsomosPanel.classList.remove('active');
     }
-    // if (!menuSets.contains(e.target) && !setsPanel.contains(e.target)) {
-    //   setsPanel.classList.remove('active');
-    // }
+
+    if (
+      !menuAportes.contains(e.target) &&
+      !aportesPanel.contains(e.target)
+    ) {
+      aportesPanel.classList.remove('active');
+    }
   });
 }
