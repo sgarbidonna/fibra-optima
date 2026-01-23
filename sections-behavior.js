@@ -1,7 +1,7 @@
 
 if (isWeb) {
 
-  console.log('web', ' -  sections-behavior.js');
+  // console.log('web', ' -  sections-behavior.js');
 
   let activeSection = null;
 
