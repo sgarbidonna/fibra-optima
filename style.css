@@ -1481,8 +1481,7 @@ input {
   padding: 0 1rem;
   flex-grow: 1;
   overflow-y: auto;
-  
-        text-align: justify;
+  text-align: justify;
 }
 
 /* Flechas navegación */

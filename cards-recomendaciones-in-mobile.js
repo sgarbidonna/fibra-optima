@@ -178,13 +178,17 @@
 //   }
 // });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.matchMedia("(max-width: 1200px)").matches) return;
 
   const cards = document.querySelectorAll(".card-recomendaciones");
+  if (!cards.length) return;
+
   let currentIndex = 0;
+
+  /* ======================
+     OVERLAY
+  ====================== */
 
   const overlay = document.createElement("div");
   overlay.id = "overlay-detalle";
@@ -206,6 +210,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevBtn = overlay.querySelector("#flecha-prev");
   const nextBtn = overlay.querySelector("#flecha-next");
 
+  /* ======================
+     HELPERS
+  ====================== */
+
   function getBackgroundUrl(el) {
     const bg = window.getComputedStyle(el).backgroundImage;
     return bg && bg !== "none" ? bg.slice(5, -2) : "";
@@ -219,12 +227,22 @@ document.addEventListener("DOMContentLoaded", () => {
     title.textContent = card.querySelector("h3").textContent;
     text.textContent = card.querySelector("p").textContent;
 
+    overlay.classList.add("active");
+    overlay.style.display = "flex";
+
     detalleCard.style.transform = "";
     detalleCard.style.opacity = "";
 
-    overlay.classList.add("active");
-    overlay.style.display = "flex";
     currentIndex = index;
+  }
+
+  function cerrarOverlay() {
+    overlay.classList.remove("active");
+    overlay.style.display = "none";
+
+    detalleCard.style.transition = "";
+    detalleCard.style.transform = "";
+    detalleCard.style.opacity = "";
   }
 
   function cambiarCard(direccion) {
@@ -260,15 +278,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
-  prevBtn.onclick = e => {
+  /* ======================
+     BOTONES
+  ====================== */
+
+  prevBtn.addEventListener("click", e => {
     e.stopPropagation();
     cambiarCard("right");
-  };
+  });
 
-  nextBtn.onclick = e => {
+  nextBtn.addEventListener("click", e => {
     e.stopPropagation();
     cambiarCard("left");
-  };
+  });
+
+  /* ======================
+     CLICK / TOUCH AFUERA
+  ====================== */
+
+  overlay.addEventListener("click", e => {
+    if (!detalleCard.contains(e.target)) {
+      cerrarOverlay();
+    }
+  });
+
+  overlay.addEventListener("touchstart", e => {
+    if (!detalleCard.contains(e.target)) {
+      cerrarOverlay();
+    }
+  });
+
+  /* ======================
+     OPEN
+  ====================== */
 
   cards.forEach((card, i) => {
     card.addEventListener("click", () => mostrarDetalle(i));
@@ -276,53 +318,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ======================
      SWIPE HORIZONTAL ONLY
-     (sin interferir scroll)
   ====================== */
 
   let startX = 0;
-  let startY = 0;
   let currentX = 0;
   let dragging = false;
 
   overlay.addEventListener("touchstart", e => {
-    const t = e.touches[0];
-    startX = t.clientX;
-    startY = t.clientY;
-    dragging = false;
+    if (!detalleCard.contains(e.target)) return;
+
+    startX = e.touches[0].clientX;
+    dragging = true;
+    detalleCard.style.transition = "none";
   });
 
   overlay.addEventListener("touchmove", e => {
-    const t = e.touches[0];
-    currentX = t.clientX - startX;
-    const currentY = t.clientY - startY;
+    if (!dragging) return;
 
-    // si el gesto es vertical → permitir scroll nativo
-    if (Math.abs(currentY) > Math.abs(currentX)) return;
-
-    dragging = true;
-    e.preventDefault(); // bloquea scroll SOLO si es horizontal
-
-    detalleCard.style.transition = "none";
+    currentX = e.touches[0].clientX - startX;
     detalleCard.style.transform = `translateX(${currentX}px)`;
-    detalleCard.style.opacity =
-      1 - Math.min(Math.abs(currentX) / 300, 0.4);
   });
 
   overlay.addEventListener("touchend", () => {
     if (!dragging) return;
+    dragging = false;
 
     const absX = Math.abs(currentX);
-
-    detalleCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+    detalleCard.style.transition = "transform 0.3s ease";
 
     if (absX > 100) {
       cambiarCard(currentX > 0 ? "right" : "left");
     } else {
       detalleCard.style.transform = "translateX(0)";
-      detalleCard.style.opacity = "1";
     }
 
     currentX = 0;
-    dragging = false;
   });
+
 });
