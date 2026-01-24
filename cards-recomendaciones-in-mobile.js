@@ -182,6 +182,29 @@
    OVERLAY RECOMENDACIONES – MOBILE SAFE VERSION
 ===================================================== */
 
+/* =====================================================
+   OVERLAY RECOMENDACIONES – MOBILE SAFE VERSION
+   + FIX VIEWPORT ANDROID (CHROME / BRAVE)
+===================================================== */
+
+function fixMobileViewportWidth() {
+  // Evita que Chromium Android calcule un ancho mayor
+  document.documentElement.style.width = "100%";
+  document.documentElement.style.maxWidth = "100%";
+
+  document.body.style.width = "100%";
+  document.body.style.maxWidth = "100%";
+  document.body.style.overflowX = "hidden";
+}
+
+function lockBodyScroll() {
+  document.body.style.overflow = "hidden";
+}
+
+function unlockBodyScroll() {
+  document.body.style.overflow = "";
+}
+
 function initOverlayRecomendaciones() {
   if (!window.matchMedia("(max-width: 1200px)").matches) return;
 
@@ -192,12 +215,17 @@ function initOverlayRecomendaciones() {
   let overlayOpen = false;
 
   /* ======================
-     OVERLAY
+     OVERLAY (NO 100vw)
   ====================== */
 
   const overlay = document.createElement("div");
   overlay.id = "overlay-detalle";
   overlay.style.display = "none";
+  overlay.style.position = "fixed";
+  overlay.style.inset = "0";
+  overlay.style.width = "100%";
+  overlay.style.maxWidth = "100%";
+
   overlay.innerHTML = `
     <div class="detalle-card">
       <button class="close-detalle" aria-label="Cerrar">✕</button>
@@ -208,6 +236,7 @@ function initOverlayRecomendaciones() {
       <p></p>
     </div>
   `;
+
   document.body.appendChild(overlay);
 
   const detalleCard = overlay.querySelector(".detalle-card");
@@ -235,6 +264,9 @@ function initOverlayRecomendaciones() {
     title.textContent = card.querySelector("h3")?.textContent || "";
     text.textContent = card.querySelector("p")?.textContent || "";
 
+    fixMobileViewportWidth();
+    lockBodyScroll();
+
     overlay.style.display = "flex";
     requestAnimationFrame(() => overlay.classList.add("active"));
 
@@ -251,6 +283,8 @@ function initOverlayRecomendaciones() {
     setTimeout(() => {
       overlay.style.display = "none";
       detalleCard.style.transform = "";
+      unlockBodyScroll();
+      fixMobileViewportWidth();
     }, 300);
   }
 
@@ -400,12 +434,11 @@ function initOverlayRecomendaciones() {
 ===================================================== */
 
 window.addEventListener("load", () => {
-  setTimeout(() => {
-    // Fix viewport Android Chromium
-    document.documentElement.style.maxWidth = "100vw";
-    document.body.style.maxWidth = "100vw";
-    document.body.style.overflowX = "hidden";
+  // Fix inicial ANTES de medir nada
+  fixMobileViewportWidth();
 
+  // Esperar un frame para Chromium Android
+  requestAnimationFrame(() => {
     initOverlayRecomendaciones();
-  }, 0);
+  });
 });
