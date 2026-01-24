@@ -1266,6 +1266,7 @@ max-width: 100vw;
   display: none;
   align-items: center;
   justify-content: center;
+  width: 100%;
   max-width: 100vw;
 }
 
