@@ -1002,7 +1002,9 @@ height: 50vh;
   justify-content: center;
   width: 100%;
   max-width: 100vw;
-}/* Flechas navegación */
+}
+
+/* Flechas navegación */
 .flecha {
   position: absolute;
   top: 50%;
