@@ -943,7 +943,6 @@ li::before {
   /* Overlay oscuro detrás */
 #overlay-detalle {
   width: 100%;
-  height: 100%;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
@@ -951,7 +950,7 @@ li::before {
   justify-content: center;
   align-items: center;
   z-index: 2000;
-
+  max-width: 100vw;
   overflow: hidden;
 height: 100vh;
 }
