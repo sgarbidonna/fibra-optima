@@ -995,7 +995,14 @@ height: 50vh;
   overflow-y: auto;
 }
 
-/* Flechas navegación */
+
+#overlay-detalle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100vw;
+}/* Flechas navegación */
 .flecha {
   position: absolute;
   top: 50%;
@@ -1274,7 +1281,7 @@ max-width: 100vw;
   display: flex;
 }
 .detalle-card {
-  max-width: 100%;
+  max-width: 100vw;
   box-sizing: border-box;
 }
 
