@@ -1273,7 +1273,7 @@ max-width: 100vw;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 #overlay-detalle.active {
