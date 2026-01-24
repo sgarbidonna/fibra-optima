@@ -1124,19 +1124,19 @@ max-width: 100vw;
   /* MOBILE MENU */
 
   .mobile-header {
-   display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        height: 150px;
-        padding: 5px 10px 3px 3px;
-        background: white;
-        position: fixed;
-        width: 100vw;
-        max-width: 100vw;
-        top: -90px;
-        left: 0;
-        z-index: 1000;
-        position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 150px;
+    padding: 5px 10px 3px 3px;
+    background: white;
+    position: fixed;
+    width: 100vw;
+    max-width: 100vw;
+    top: -90px;
+    left: 0;
+    z-index: 1000;
+    position: fixed;
   }
 
   .mobile-logo img {
@@ -1205,7 +1205,6 @@ max-width: 100vw;
 
   .section {
     display: flex;
-    /* flex: 1; */
     padding: 10px;
     max-width: 100vw;
     transition: flex 1s ease, opacity 0.4s ease;
@@ -1216,7 +1215,6 @@ max-width: 100vw;
     flex-direction: column;
     border-right: 0px;
     transition: height 0.4s ease;
-    /* height: var(--section-collapsed-height, 50px);   */
     height: 50px;
     max-height: 50px;
   }
@@ -1224,7 +1222,6 @@ max-width: 100vw;
   
 
   .section.active {
-    /* height: calc(100vh - 2 * var(--section-collapsed-height, 60px)); */
     overflow-y: scroll;
     height: calc(100vh - 10px);
     max-height: calc(100vh - 10px);
@@ -1242,16 +1239,15 @@ max-width: 100vw;
   }
 
 
-.card-recomendaciones{
-    flex-direction: column-reverse;
-    gap: 1em;
- 
-}
+  .card-recomendaciones{
+      flex-direction: column-reverse;
+      gap: 1em;
+  
+  }
   .cards-recomendaciones-content{
     display: flex;
     flex-direction: column;
     overflow-y: scroll; 
-    /* padding-bottom: 1rem;  */
     gap: 17px;
     justify-content: flex-start;
     align-items: center;
@@ -1272,11 +1268,11 @@ max-width: 100vw;
 
   }
 
-  #overlay-detalle {
+#overlay-detalle {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 90vw;
   max-width: 100vw;
 }
 
@@ -1369,22 +1365,6 @@ max-width: 100vw;
   #xqsomos-panel{
     display: none;
   }
-/*   
-.tags-mobile {
-        display: grid;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        justify-items: center;
-        grid-template-columns: repeat(2, 1fr);
-        padding-bottom: 25px;
-    }
-
-    
-.tag.active {
-  background-color: #9AC17F;
-
-} */
 
 
 
