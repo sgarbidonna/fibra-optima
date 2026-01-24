@@ -63,7 +63,7 @@ function initOverlayRecomendaciones() {
      HELPERS
   ====================== */
 
-  detalleCard.style.maxWidth = "100vw";
+  detalleCard.style.maxWidth = "90vw";
 
 
   function getBackgroundUrl(el) {
