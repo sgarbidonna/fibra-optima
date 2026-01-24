@@ -961,7 +961,7 @@ height: 100vh;
   background: #fff;
   border-radius: 1rem;
           width: 75vw;
-
+height: auto;
   overflow: hidden;
   position: relative;
   display: flex;
