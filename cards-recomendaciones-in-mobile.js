@@ -62,10 +62,10 @@ function initOverlayRecomendaciones() {
   /* ======================
      HELPERS
   ====================== */
-      detalleCard.style.width = "100vw";
+      // detalleCard.style.width = "100vw";
       detalleCard.style.maxWidth = "100vw";
 
-      
+
   function getBackgroundUrl(el) {
     const bg = window.getComputedStyle(el).backgroundImage;
     return bg && bg !== "none" ? bg.slice(5, -2) : "";
