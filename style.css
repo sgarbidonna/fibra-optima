@@ -905,7 +905,9 @@ li::before {
 
 /*TABLET*/
 @media (min-width: 821px) and (max-width: 1200px) {
-
+#preloader{
+  max-width: 100vw;
+}
   .info-call{
     display: none;
   }
