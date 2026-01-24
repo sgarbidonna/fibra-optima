@@ -1000,7 +1000,7 @@ height: 50vh;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   max-width: 100vw;
 }
 
@@ -1580,7 +1580,7 @@ input {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
   display: none;
