@@ -1280,7 +1280,7 @@ max-width: 100vw;
   display: flex;
 }
 .detalle-card {
-  max-width: 100vw;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
