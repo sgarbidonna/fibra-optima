@@ -951,14 +951,9 @@ li::before {
   justify-content: center;
   align-items: center;
   z-index: 2000;
-}
 
-#overlay-detalle {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  max-width: 100%;
   overflow: hidden;
+height: 100vh;
 }
 
 
@@ -967,6 +962,7 @@ li::before {
   background: #fff;
   border-radius: 1rem;
           width: 75vw;
+
   overflow: hidden;
   position: relative;
   display: flex;
