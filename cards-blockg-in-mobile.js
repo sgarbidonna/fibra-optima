@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ===============================
-     SWIPE / DRAG
+     SWIPE / DRAG (SOLO EN DETALLE)
   =============================== */
 
   let startX = 0;
@@ -106,47 +106,73 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentY = 0;
   let dragging = false;
 
-  overlay.addEventListener("touchstart", e => {
+  detalle.addEventListener("touchstart", e => {
+    if (e.touches.length !== 1) return;
+
     const t = e.touches[0];
     startX = t.clientX;
     startY = t.clientY;
+    currentX = 0;
+    currentY = 0;
     dragging = true;
-    detalle.style.transition = "none";
-  });
 
-  overlay.addEventListener("touchmove", e => {
+    detalle.style.transition = "none";
+  }, { passive: true });
+
+
+  detalle.addEventListener("touchmove", e => {
     if (!dragging) return;
 
     const t = e.touches[0];
     currentX = t.clientX - startX;
     currentY = t.clientY - startY;
 
-    if (Math.abs(currentY) > Math.abs(currentX)) {
-      detalle.style.transform = `translateY(${currentY * 0.7}px)`;
-      detalle.style.opacity = 1 - Math.min(Math.abs(currentY) / 300, 0.4);
-    } else {
-      // detalle.style.transform = `translateX(${currentX * 0.7}px)`;
-      const limit = 80;
-      const x = Math.max(-limit, Math.min(limit, currentX));  
-      detalle.style.transform = `translateX(${x}px)`;
+    const absX = Math.abs(currentX);
+    const absY = Math.abs(currentY);
 
-      detalle.style.opacity = 1 - Math.min(Math.abs(currentX) / 300, 0.4);
+    /* ---- GESTO VERTICAL (cerrar) ---- */
+    if (absY > absX) {
+      const limitY = 120;
+      const y = Math.max(-limitY, Math.min(limitY, currentY));
+
+      detalle.style.transform = `translateY(${y}px)`;
+      detalle.style.opacity = 1 - Math.min(absY / 300, 0.4);
+      return;
     }
-  });
 
-  overlay.addEventListener("touchend", () => {
+    /* ---- GESTO HORIZONTAL (swipe cards) ---- */
+    e.preventDefault(); // <- CLAVE: bloquea scroll horizontal del viewport
+
+    const limitX = 80;
+    const x = Math.max(-limitX, Math.min(limitX, currentX));
+
+    detalle.style.transform = `translateX(${x}px)`;
+    detalle.style.opacity = 1 - Math.min(absX / 300, 0.4);
+  }, { passive: false });
+
+
+  detalle.addEventListener("touchend", () => {
+    if (!dragging) return;
     dragging = false;
-    detalle.style.transition = "transform 0.35s ease, opacity 0.10s ease";
 
+    detalle.style.transition = "transform 0.35s ease, opacity 0.15s ease";
+
+    /* ---- CIERRE POR SWIPE VERTICAL ---- */
     if (Math.abs(currentY) > Math.abs(currentX) && Math.abs(currentY) > 80) {
       cerrarOverlay();
-    } else if (Math.abs(currentX) > 60) {
+      return;
+    }
+
+    /* ---- CAMBIO DE CARD ---- */
+    if (Math.abs(currentX) > 60) {
       currentX > 0 ? irPrev() : irNext();
     } else {
-      detalle.style.transform = "translate(0,0)";
+      detalle.style.transform = "translate(0, 0)";
       detalle.style.opacity = "1";
     }
 
-    currentX = currentY = 0;
+    currentX = 0;
+    currentY = 0;
   });
+
 });
