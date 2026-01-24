@@ -908,6 +908,10 @@ li::before {
 #preloader{
   max-width: 100vw;
 }
+
+#info-layer{
+max-width: 100vw;
+}
   .info-call{
     display: none;
   }
