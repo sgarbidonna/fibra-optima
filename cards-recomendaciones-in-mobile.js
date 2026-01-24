@@ -178,10 +178,16 @@
 //   }
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
+/* =====================================================
+   OVERLAY RECOMENDACIONES – MOBILE SAFE VERSION
+===================================================== */
+
+function initOverlayRecomendaciones() {
   if (!window.matchMedia("(max-width: 1200px)").matches) return;
 
   const cards = document.querySelectorAll(".card-recomendaciones");
+  if (!cards.length) return;
+
   let currentIndex = 0;
   let overlayOpen = false;
 
@@ -191,11 +197,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.createElement("div");
   overlay.id = "overlay-detalle";
+  overlay.style.display = "none";
   overlay.innerHTML = `
     <div class="detalle-card">
       <button class="close-detalle" aria-label="Cerrar">✕</button>
-      <button id="flecha-prev" class="flecha">←</button>
-      <button id="flecha-next" class="flecha">→</button>
+      <button class="flecha flecha-prev">←</button>
+      <button class="flecha flecha-next">→</button>
       <img src="" alt="">
       <h3></h3>
       <p></p>
@@ -207,8 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const img = overlay.querySelector("img");
   const title = overlay.querySelector("h3");
   const text = overlay.querySelector("p");
-  const prevBtn = overlay.querySelector("#flecha-prev");
-  const nextBtn = overlay.querySelector("#flecha-next");
+  const prevBtn = overlay.querySelector(".flecha-prev");
+  const nextBtn = overlay.querySelector(".flecha-next");
   const closeBtn = overlay.querySelector(".close-detalle");
 
   /* ======================
@@ -225,19 +232,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgDiv = card.querySelector(".card-recomendaciones-img");
 
     img.src = getBackgroundUrl(imgDiv);
-    title.textContent = card.querySelector("h3").textContent;
-    text.textContent = card.querySelector("p").textContent;
+    title.textContent = card.querySelector("h3")?.textContent || "";
+    text.textContent = card.querySelector("p")?.textContent || "";
 
-    overlay.classList.add("active");
     overlay.style.display = "flex";
+    requestAnimationFrame(() => overlay.classList.add("active"));
+
     overlayOpen = true;
     currentIndex = index;
   }
 
   function cerrarOverlay() {
+    if (!overlayOpen) return;
+
     overlayOpen = false;
     overlay.classList.remove("active");
-    overlay.style.display = "none";
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+      detalleCard.style.transform = "";
+    }, 300);
   }
 
   function cambiarCard(direccion) {
@@ -257,8 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const imgDiv = card.querySelector(".card-recomendaciones-img");
 
       img.src = getBackgroundUrl(imgDiv);
-      title.textContent = card.querySelector("h3").textContent;
-      text.textContent = card.querySelector("p").textContent;
+      title.textContent = card.querySelector("h3")?.textContent || "";
+      text.textContent = card.querySelector("p")?.textContent || "";
 
       detalleCard.style.transition = "none";
       detalleCard.style.transform =
@@ -268,8 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
       detalleCard.style.opacity = "0";
 
       requestAnimationFrame(() => {
-        detalleCard.style.transition =
-          "transform 0.3s ease, opacity 0.3s ease";
+        detalleCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
         detalleCard.style.transform = "translateX(0)";
         detalleCard.style.opacity = "1";
       });
@@ -296,39 +309,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ======================
-     ABRIR CARD
+     ABRIR CARD (ANTI DOBLE CLICK)
   ====================== */
 
   cards.forEach((card, i) => {
     card.addEventListener("click", e => {
       if (overlayOpen) return;
+      e.preventDefault();
       e.stopPropagation();
       mostrarDetalle(i);
     });
   });
 
   /* ======================
-     CERRAR AFUERA (CLICK + TOUCH)
+     CERRAR TOCANDO AFUERA
+     (SIN CLICK FANTASMA)
   ====================== */
 
-  overlay.addEventListener("click", e => {
-    if (e.target === overlay) cerrarOverlay();
+  overlay.addEventListener("pointerdown", e => {
+    if (e.target === overlay) {
+      e.preventDefault();
+      e.stopPropagation();
+      cerrarOverlay();
+    }
   });
 
-  overlay.addEventListener(
-    "touchstart",
-    e => {
-      if (e.target === overlay) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        cerrarOverlay();
-      }
-    },
-    { passive: false }
-  );
-
   /* ======================
-     SWIPE HORIZONTAL REAL (SIN ROMPER SCROLL)
+     SWIPE HORIZONTAL REAL
+     (NO ROMPE SCROLL)
   ====================== */
 
   let startX = 0;
@@ -337,41 +345,33 @@ document.addEventListener("DOMContentLoaded", () => {
   let isHorizontal = null;
   let dragging = false;
 
-  detalleCard.addEventListener(
-    "touchstart",
-    e => {
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-      currentX = 0;
-      isHorizontal = null;
-      dragging = true;
-      detalleCard.style.transition = "none";
-    },
-    { passive: true }
-  );
+  detalleCard.addEventListener("touchstart", e => {
+    const t = e.touches[0];
+    startX = t.clientX;
+    startY = t.clientY;
+    currentX = 0;
+    isHorizontal = null;
+    dragging = true;
+    detalleCard.style.transition = "none";
+  }, { passive: true });
 
-  detalleCard.addEventListener(
-    "touchmove",
-    e => {
-      if (!dragging) return;
+  detalleCard.addEventListener("touchmove", e => {
+    if (!dragging) return;
 
-      const t = e.touches[0];
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
+    const t = e.touches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
 
-      if (isHorizontal === null) {
-        isHorizontal = Math.abs(dx) > Math.abs(dy);
-      }
+    if (isHorizontal === null) {
+      isHorizontal = Math.abs(dx) > Math.abs(dy);
+    }
 
-      if (!isHorizontal) return;
+    if (!isHorizontal) return;
 
-      e.preventDefault();
-      currentX = dx;
-      detalleCard.style.transform = `translateX(${currentX}px)`;
-    },
-    { passive: false }
-  );
+    e.preventDefault();
+    currentX = dx;
+    detalleCard.style.transform = `translateX(${currentX}px)`;
+  }, { passive: false });
 
   detalleCard.addEventListener("touchend", () => {
     if (!dragging) return;
@@ -393,5 +393,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     currentX = 0;
   });
-});
+}
 
+/* =====================================================
+   INIT DESPUÉS DEL PRELOADER (CRÍTICO)
+===================================================== */
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    // Fix viewport Android Chromium
+    document.documentElement.style.maxWidth = "100vw";
+    document.body.style.maxWidth = "100vw";
+    document.body.style.overflowX = "hidden";
+
+    initOverlayRecomendaciones();
+  }, 0);
+});
