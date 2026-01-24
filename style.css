@@ -948,7 +948,7 @@ max-width: 100vw;
   
   /* Overlay oscuro detrás */
 #overlay-detalle {
-  width: 100%;
+  width: 100vw;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
@@ -1000,7 +1000,7 @@ height: 50vh;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 90vw;
   max-width: 100vw;
 }
 
@@ -1272,7 +1272,7 @@ max-width: 100vw;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   max-width: 100vw;
 }
 
