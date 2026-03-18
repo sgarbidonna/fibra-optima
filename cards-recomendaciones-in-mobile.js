@@ -19,6 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let isOpen = false;
 
   /* ===============================
+     COLLECT & STRIP HANDLERS
+     (links only work inside overlay)
+  =============================== */
+
+  const cardData = Array.from(cards).map(card => {
+    const imgDiv = card.querySelector(".card-recomendaciones-img");
+    const cardTitle = card.querySelector("h3");
+
+    const imgHandler = imgDiv?.onclick || null;
+    const titleHandler = cardTitle?.onclick || null;
+
+    if (imgDiv) imgDiv.onclick = null;
+    if (cardTitle) cardTitle.onclick = null;
+
+    return { imgHandler, titleHandler };
+  });
+
+  /* ===============================
      HELPERS
   =============================== */
 
@@ -30,9 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function render(index) {
     const card = cards[index];
     const imgDiv = card.querySelector(".card-recomendaciones-img");
+    const cardTitle = card.querySelector("h3");
+    const { imgHandler, titleHandler } = cardData[index];
 
     img.src = getBackgroundUrl(imgDiv);
-    title.textContent = card.querySelector("h3")?.textContent || "";
+    img.onclick = imgHandler;
+    img.style.cursor = imgHandler ? "cell" : "";
+
+    title.textContent = cardTitle?.textContent || "";
+    title.onclick = titleHandler;
+    title.style.cursor = titleHandler ? "cell" : "";
+
     text.textContent = card.querySelector("p")?.textContent || "";
   }
 
