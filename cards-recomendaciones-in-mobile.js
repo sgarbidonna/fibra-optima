@@ -19,6 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let isOpen = false;
 
   /* ===============================
+     COLLECT & STRIP HANDLERS
+     (links only work inside overlay)
+  =============================== */
+
+  const cardData = Array.from(cards).map(card => {
+    const imgDiv = card.querySelector(".card-recomendaciones-img");
+    const cardTitle = card.querySelector("h3");
+
+    const imgHandler = imgDiv?.onclick || null;
+    const titleHandler = cardTitle?.onclick || null;
+
+    if (imgDiv) imgDiv.onclick = null;
+    if (cardTitle) cardTitle.onclick = null;
+
+    return { imgHandler, titleHandler };
+  });
+
+  /* ===============================
      HELPERS
   =============================== */
 
@@ -31,14 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = cards[index];
     const imgDiv = card.querySelector(".card-recomendaciones-img");
     const cardTitle = card.querySelector("h3");
+    const { imgHandler, titleHandler } = cardData[index];
 
     img.src = getBackgroundUrl(imgDiv);
-    img.onclick = imgDiv?.onclick || null;
-    img.style.cursor = imgDiv?.onclick ? "cell" : "";
+    img.onclick = imgHandler;
+    img.style.cursor = imgHandler ? "cell" : "";
 
     title.textContent = cardTitle?.textContent || "";
-    title.onclick = cardTitle?.onclick || null;
-    title.style.cursor = cardTitle?.onclick ? "cell" : "";
+    title.onclick = titleHandler;
+    title.style.cursor = titleHandler ? "cell" : "";
 
     text.textContent = card.querySelector("p")?.textContent || "";
   }
