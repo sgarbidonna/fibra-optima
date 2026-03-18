@@ -30,9 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function render(index) {
     const card = cards[index];
     const imgDiv = card.querySelector(".card-recomendaciones-img");
+    const cardTitle = card.querySelector("h3");
 
     img.src = getBackgroundUrl(imgDiv);
-    title.textContent = card.querySelector("h3")?.textContent || "";
+    img.onclick = imgDiv?.onclick || null;
+    img.style.cursor = imgDiv?.onclick ? "cell" : "";
+
+    title.textContent = cardTitle?.textContent || "";
+    title.onclick = cardTitle?.onclick || null;
+    title.style.cursor = cardTitle?.onclick ? "cell" : "";
+
     text.textContent = card.querySelector("p")?.textContent || "";
   }
 
