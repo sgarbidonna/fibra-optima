@@ -480,6 +480,9 @@ width: 0px;}
 
     cursor: cell;
 }
+#section-b a{
+  text-decoration: underline; color: rgba(93, 107, 84, 1);
+}
 
 
 .xqsomos, .aportes {
